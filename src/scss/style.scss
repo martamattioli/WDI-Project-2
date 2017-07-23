@@ -1,3 +1,33 @@
-body {
-  background: blue;
+h1 {
+  text-align: center;
+  padding: 40px 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  &.user-card li {
+    text-align: center;
+    border: solid 3px black;
+    border-radius: 4px;
+    padding: 10px;
+    img {
+      margin: 20px 0;
+    }
+    p {
+      text-align: left;
+    }
+  }
+}
+
+nav {
+  padding: 10px;
+  li {
+    display: inline-block;
+    a {
+      display: inline-block;
+      padding: 10px;
+      background: gold;
+    }
+  }
 }
