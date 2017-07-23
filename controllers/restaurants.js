@@ -1,4 +1,4 @@
-// const Restaurant = require('../models/restaurant');
+const Restaurant = require('../models/restaurant');
 //
 // //INDEX
 // function restaurantsIndex(req, res) {
@@ -12,10 +12,18 @@
 //       res.status(500).render('error', { error: err });
 //     });
 // }
-//
+
 // // SHOW
 // function restaurantShow(req, res) {
-//   Restaurant
+//   if(!Restaurant) {
+//     Restaurant
+//       .create({
+//
+//       })
+//   }
+//
+//
+//
 //     .findById(req.params.id)
 //     .exec()
 //     .then(restaurant => {
@@ -26,8 +34,8 @@
 //       res.status(500).render('error', { error: err });
 //     });
 // }
-//
-// module.exports = {
-//   index: restaurantsIndex,
-//   show: restaurantShow
-// };
+// //
+// // module.exports = {
+// //   index: restaurantsIndex,
+// //   show: restaurantShow
+// // };

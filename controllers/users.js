@@ -3,6 +3,7 @@ const User = require('../models/user');
 
 //I wanna create a show page for each user
 function usersShow(req, res) {
+  console.log(req.query);
   User // here I have access to the user that has been given back to me from the database
     .findById(req.params.id)
     .exec()

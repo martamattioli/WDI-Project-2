@@ -1,30 +1,10 @@
 <h1>Homepage</h1>
 
-<%# <div class="row">
+<div class="row">
   <div class="col-12">
     <div id="locationField">
       <input id="pac-input" class="controls" type="text" placeholder="Enter a location" onfocus="geolocate()"/>
       <pre id="placeInfo"></pre>
     </div>
-  </div>
-</div>%>
-
-<div class="row">
-  <div class="col-12">
-    <ul class="user-card">
-      <div class="row">
-        <% users.forEach((user) => { %>
-          <div class="col-4">
-          <a href="/users/<%= user._id %>">
-            <li>
-              <img class="img-responsive" src="<%= user.photo %>" alt="<%= user.firstName %> Photo">
-              <p><strong><%= user.firstName %> <%= user.lastName %></strong></p>
-              <p><strong>Email:</strong> <%= user.email %></p>
-            </li>
-          </a>
-          </div>
-        <% }) %>
-      </div>
-    </ul>
   </div>
 </div>

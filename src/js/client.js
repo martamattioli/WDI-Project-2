@@ -1,30 +1,40 @@
-$(init);
+var menuApp = menuApp || {};
 
 /* global google:ignore */
 
-function init() {
-  // initMap();
-}
+menuApp.init = function() {
+  this.initMap();
+};
 
-function initMap() {
-  var input = document.getElementById('pac-input');
+menuApp.initMap = function() {
+  console.log(this);
+  this.input = document.getElementById('pac-input');
 
 
-  var autocomplete = new google.maps.places.Autocomplete(input, { types: [ 'establishment' ]});
+  this.autocomplete = new google.maps.places.Autocomplete(menuApp.input, { types: [ 'establishment' ]});
 
   // Set initial restrict to the greater list of countries.
-  autocomplete.setComponentRestrictions({
+  this.autocomplete.setComponentRestrictions({
     'country': ['uk']
   });
 
-  autocomplete.addListener('place_changed', function() {
-    var place = autocomplete.getPlace();
+  this.autocomplete.addListener('place_changed', function() {
+    var place = menuApp.autocomplete.getPlace();
     if (!place.geometry) {
       window.alert('Select a restaurant');
       return;
     }
 
+    menuApp.searchInput = `${place.place_id}`;
 
-    $(`<div>${place.name}</div>`).appendTo('#placeInfo');
+    // $
+    //   .get(`http://localhost:3000/restaurants/${menuApp.searchInput}`)
+    //   .fail(() => console.log('error'));
   });
-}
+};
+
+$(menuApp.init.bind(menuApp));
+
+// module.exports = {
+//   searchInput: menuApp.searchInput
+// };

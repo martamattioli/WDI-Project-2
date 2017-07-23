@@ -5,9 +5,13 @@ const db = process.env.MONGODB_URI || 'mongodb://localhost/wdi-project-2';
 mongoose.connect(db);
 mongoose.Promise = bluebird;
 
+// const requestPromise = require('request-promise');
+
 const User = require('../models/user');
+// const Restaurant = require('../models/restaurant');
 
 User.collection.drop();
+// Restaurant.collection.drop();
 
 User
   .create([{
@@ -27,14 +31,6 @@ User
     mongoose.connection.close();
   });
 
-
-//
-// const requestPromise = require('request-promise');
-//
-// const Restaurant = require('../models/restaurant');
-//
-// Restaurant.collection.drop();
-//
 // requestPromise('https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJt2EWWWQFdkgRNCbSCr4SdSY&key=AIzaSyDT0WLiFcMOg4LQBxdNbupG_XkKRSf_Q_8')
 //   .then(htmlString => {
 //     // console.log(htmlString); //--> the response from an api that I make a request to using request-promise will ALWAYS return JSON as a string
