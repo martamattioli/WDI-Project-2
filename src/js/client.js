@@ -3,7 +3,7 @@ $(init);
 /* global google:ignore */
 
 function init() {
-  initMap();
+  // initMap();
 }
 
 function initMap() {

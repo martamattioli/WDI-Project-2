@@ -4,6 +4,7 @@ const router            = express.Router();
 const statics           = require('../controllers/statics');
 const registrations     = require('../controllers/registrations');
 const sessions          = require('../controllers/sessions');
+const users             = require('../controllers/users');
 // const restaurants    = require('../controllers/restaurants'); //added
 
 router.route('/')
@@ -16,6 +17,16 @@ router.route('/register')
 router.route('/login')
   .get(sessions.new)
   .post(sessions.create);
+
+router.route('/logout')
+  .get(sessions.delete);
+
+router.route('/users/:id')
+  .get(users.show)
+  .put(users.update);
+
+router.route('/users/:id/edit')
+  .get(users.edit);
 
 // router.route('/restaurants')
 //   .get(restaurants.index);

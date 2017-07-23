@@ -20,7 +20,7 @@
 //     .exec()
 //     .then(restaurant => {
 //       if (!restaurant) return res.status(404).render('error', { error: 'No restaurant found.'});
-//       res.render('cities/show', { restaurant });
+//       res.render('restaurants/show', { restaurant });
 //     })
 //     .catch(err => {
 //       res.status(500).render('error', { error: err });

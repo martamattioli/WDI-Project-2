@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 const mongoose       = require('mongoose');
 const bluebird       = require('bluebird');
 const session = require('express-session');
+const flash = require('express-flash');
 const { port, db, secret }   = require('./config/env');
 const routes         = require('./config/routes');
 const User = require('./models/user');
@@ -47,16 +48,22 @@ app.use((req, res, next) => {
     .then(user=> {
       if (!user) {
         return req.session.regenerate(() => {
+          // req.flash('danger', 'You must be logged in to view this content');
           res.redirect('/');
         });
       }
       req.session.userId = user._id;
+
+      req.user = user;
+
       res.locals.user = user;
       res.locals.isLoggedIn = true;
 
       next();
     });
 });
+
+app.use(flash());
 
 app.use(routes);
 app.listen(port, () => console.log(`Express up and running on port: ${port}`));

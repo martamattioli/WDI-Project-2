@@ -1,0 +1,15 @@
+<h1>USERS SHOW</h1>
+
+<p><%= user.firstName %></p>
+<p><%= user.lastName %></p>
+<p><%= user.email %></p>
+
+<ul>
+  <li>User _id: <%= user._id %></li>
+  <li>User id: <%= user.id %></li>
+  <li>Locals User id: <%= locals.user.id %></li>
+</ul>
+
+<% if (user.id === locals.user.id) { %>
+  <a href="/users/<%= user._id %>/edit">EDIT INFO</a>
+<% } %>

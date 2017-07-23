@@ -16,6 +16,15 @@
   </head>
   <body>
     <% include ./partials/navbar %>
+    <% for (const type in messages) { %>
+      <div class="alert alert-<%= type %> alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <%= messages[type] %>
+      </div>
+    <% } %>
+
     <main class="container">
       <%- body %>
     </main>

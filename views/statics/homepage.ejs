@@ -15,11 +15,13 @@
       <div class="row">
         <% users.forEach((user) => { %>
           <div class="col-4">
-          <li>
-            <img class="img-responsive" src="<%= user.photo %>" alt="<%= user.firstName %> Photo">
-            <p><strong><%= user.firstName %> <%= user.lastName %></strong></p>
-            <p><strong>Email:</strong> <%= user.email %></p>
-          </li>
+          <a href="/users/<%= user._id %>">
+            <li>
+              <img class="img-responsive" src="<%= user.photo %>" alt="<%= user.firstName %> Photo">
+              <p><strong><%= user.firstName %> <%= user.lastName %></strong></p>
+              <p><strong>Email:</strong> <%= user.email %></p>
+            </li>
+          </a>
           </div>
         <% }) %>
       </div>
