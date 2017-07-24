@@ -20,27 +20,27 @@ menuApp.init = function() {
     const turnedToNumber = parseFloat(originalValue);
     const newValue = turnedToNumber + 1;
     console.log($(e.target).attr('id'));
-    // if ($(e.target).attr('id') === 'upvote') {
-    //   $.post(`${window.location.href}`, {
-    //     itemName: `${$('#post-item-name').attr('data-value')}`,
-    //     itemCategory: `${$('#post-item-category').attr('data-value')}`,
-    //     price: parseFloat(`${$('#post-item-price').attr('data-value')}`),
-    //     photos: [`${$('#post-item-photos').attr('data-value')}`],
-    //     otherOptions: `${$('#post-item-otherOptions').attr('data-value')}`,
-    //     upvotes: newValue,
-    //     downvotes: $(e.target).attr('data-value')
-    //   });
-    // } else if ($(e.target).attr('id') === 'downvote') {
-    //   $.post(`${window.location.href}`, {
-    //     itemName: `${$('#post-item-name').attr('data-value')}`,
-    //     itemCategory: `${$('#post-item-category').attr('data-value')}`,
-    //     price: parseFloat(`${$('#post-item-price').attr('data-value')}`),
-    //     photos: [`${$('#post-item-photos').attr('data-value')}`],
-    //     otherOptions: `${$('#post-item-otherOptions').attr('data-value')}`,
-    //     upvotes: $(e.target).attr('data-value'),
-    //     downvotes: newValue
-    //   });
-    // }
+    if ($(e.target).attr('id') === 'upvote') {
+      $.post(`${window.location.href}`, {
+        itemName: `${$('#post-item-name').attr('data-value')}`,
+        itemCategory: `${$('#post-item-category').attr('data-value')}`,
+        price: parseFloat(`${$('#post-item-price').attr('data-value')}`),
+        photos: [`${$('#post-item-photos').attr('data-value')}`],
+        otherOptions: `${$('#post-item-otherOptions').attr('data-value')}`,
+        upvotes: newValue,
+        downvotes: $('#downvote').attr('data-value')
+      });
+    } else if ($(e.target).attr('id') === 'downvote') {
+      $.post(`${window.location.href}`, {
+        itemName: `${$('#post-item-name').attr('data-value')}`,
+        itemCategory: `${$('#post-item-category').attr('data-value')}`,
+        price: parseFloat(`${$('#post-item-price').attr('data-value')}`),
+        photos: [`${$('#post-item-photos').attr('data-value')}`],
+        otherOptions: `${$('#post-item-otherOptions').attr('data-value')}`,
+        upvotes: $('#upvote').attr('data-value'),
+        downvotes: newValue
+      });
+    }
 
     $(e.target).prev().children().val(newValue);
     $(e.target).attr('data-value', newValue).html(newValue);
