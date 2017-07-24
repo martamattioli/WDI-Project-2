@@ -4,6 +4,16 @@ var menuApp = menuApp || {};
 
 menuApp.init = function() {
   this.initMap();
+
+  $('input[type="radio"]').on('click', () => {
+    if ($('#showUpvote').is(':checked')) {
+      $('#upvotes').val(1);
+      $('#downvotes').val(0);
+    } else if ($('#showDownvote').is(':checked')) {
+      $('#upvotes').val(0);
+      $('#downvotes').val(1);
+    }
+  });
 };
 
 menuApp.initMap = function() {
