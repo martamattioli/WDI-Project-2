@@ -25,9 +25,7 @@ menuApp.initMap = function() {
       return;
     }
 
-    menuApp.searchInput = `${place.place_id}`;
-
-    $.post( `http://localhost:3000/restaurants/new`, { name: place.name, restaurantId: place.place_id } );
+    $.post( `http://localhost:3000/restaurants/new`, { name: place.name, restaurantId: place.place_id, websiteURL: place.website, types: place.types, priceLevel: place.price_level, rating: place.rating, address: place.formatted_address, phoneNumber: place.international_phone_number });
 
     $('#pac-input').attr('value',`${place.name}`);
 
@@ -36,7 +34,6 @@ menuApp.initMap = function() {
     });
   });
 };
-
 
 
 $(menuApp.init.bind(menuApp));
