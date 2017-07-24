@@ -27,7 +27,27 @@ function menuItemsCreate(req, res) {
     });
 }
 
+// findByIdAndUpdate(req.params.id, req.body)
+function menuItemsUpdate(req, res) {
+  Restaurant
+    .findOne({ restaurantId: req.params.restaurantId })
+    .exec()
+    .then((restaurant) => {
+      if(!restaurant) return res.status(404).render('statics/404');
+
+      for(const field in req.body) {
+        restaurant[field] = req.body[field];
+      }
+      return restaurant.save();
+    })
+    .then((restaurant) => {
+      console.log(restaurant.menuItem);
+      res.redirect(`/restaurants/${restaurant.restaurantId}`);
+    });
+}
+
 module.exports = {
   new: menuItemsNew,
-  create: menuItemsCreate
+  create: menuItemsCreate,
+  update: menuItemsUpdate
 };

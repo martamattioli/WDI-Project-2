@@ -9,34 +9,38 @@ const restaurants       = require('../controllers/restaurants'); //added
 const menuItems         = require('../controllers/menuItems'); //added
 
 router.route('/')
-  .get(statics.homepage);
+.get(statics.homepage);
 
 router.route('/register')
-  .get(registrations.new)
-  .post(registrations.create);
+.get(registrations.new)
+.post(registrations.create);
 
 router.route('/login')
-  .get(sessions.new)
-  .post(sessions.create);
+.get(sessions.new)
+.post(sessions.create);
 
 router.route('/logout')
-  .get(sessions.delete);
+.get(sessions.delete);
 
 router.route('/users/:id')
-  .get(users.show)
-  .put(users.update);
+.get(users.show)
+.put(users.update);
 
 router.route('/users/:id/edit')
-  .get(users.edit);
+.get(users.edit);
 
 router.route('/restaurants/new')
-  .post(restaurants.create);
+.post(restaurants.create);
 
 router.route('/restaurants/:restaurantId')
-  .get(restaurants.show)
-  .post(menuItems.create);
+.get(restaurants.show)
+.post(menuItems.create)
+.put(menuItems.update);
+
+// router.route('/restaurants')
+// .post(menuItems.update);
 
 router.route('/restaurants/:restaurantId/menuItems/new')
-  .get(menuItems.new);
+.get(menuItems.new);
 
 module.exports = router;

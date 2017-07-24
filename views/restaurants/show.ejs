@@ -1,19 +1,28 @@
-<h1><%= restaurant.name %></h1>
-<p>Address: <%= restaurant.address %></p>
-<p>Phone Number: <%= restaurant.phoneNumber %></p>
-<a href="<%= restaurant.websiteURL %>">Go to <%= restaurant.name %> <strong>website</strong></a>
+<section class="restaurants-show">
+  <h1><%= restaurant.name %></h1>
+  <p>Address: <%= restaurant.address %></p>
+  <p>Phone Number: <%= restaurant.phoneNumber %></p>
+  <a href="<%= restaurant.websiteURL %>" target="_blank">Go to <%= restaurant.name %> <strong>website</strong></a>
 
-<p>Price Level: <%= restaurant.priceLevel %></p>
-<p>Google Rating: <%= restaurant.rating %></p>
+  <p>Price Level: <%= restaurant.priceLevel %></p>
+  <p>Google Rating: <%= restaurant.rating %></p>
 
-<ul>
-  <% restaurant.menuItem.forEach(menuItem => { %>
-    <li>
-      <h3><%= menuItem.itemName %></h3>
-      <p><%= menuItem.upvotes %></p>
-      <p><%= menuItem.downvotes %></p>
-    </li>
-  <% }) %>
-</ul>
+  <ul>
+    <% restaurant.menuItem.forEach(item => { %>
+      <li>
+        <div class="" style="display: none;">
+          <p id="post-item-name" data-value="<%= item.itemName %>"></p>
+          <p id="post-item-category" data-value="<%= item.itemCategory %>"></p>
+          <p id="post-item-price" data-value="<%= item.price %>"></p>
+          <p id="post-item-photos" data-value="<%= item.photos %>"></p>
+          <p id="post-item-otherOptions" data-value="<%= item.otherOptions %>"></p>
+        </div>
+        <h3><%= item.itemName %></h3>
+        <button id="upvote" data-value="<%= item.upvotes %>" class="btn btn-success votes"><%= item.upvotes %></button>
+        <button id="downvote" data-value="<%= item.downvotes %>" class="btn btn-danger votes"><%= item.downvotes %></button>
+      </li>
+    <% }) %>
+  </ul>
 
-<a href="/restaurants/<%= restaurant.restaurantId %>/menuItems/new">ADD NEW ITEM</a>
+  <a href="/restaurants/<%= restaurant.restaurantId %>/menuItems/new">ADD NEW ITEM</a>
+</section>
