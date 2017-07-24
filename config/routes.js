@@ -6,7 +6,7 @@ const registrations     = require('../controllers/registrations');
 const sessions          = require('../controllers/sessions');
 const users             = require('../controllers/users');
 // const placeInput        = require('../src/js/client');
-// const restaurants       = require('../controllers/restaurants'); //added
+const restaurants       = require('../controllers/restaurants'); //added
 
 router.route('/')
   .get(statics.homepage);
@@ -29,7 +29,10 @@ router.route('/users/:id')
 router.route('/users/:id/edit')
   .get(users.edit);
 
-// router.route(`/restaurants/:${placeInput}`) //added
-//   .get(restaurants.show); //added
+router.route('/restaurants/new')
+  .post(restaurants.create);
+
+router.route('/restaurants/:restaurantId') //added
+  .get(restaurants.show); //added
 
 module.exports = router;

@@ -8,10 +8,10 @@ mongoose.Promise = bluebird;
 // const requestPromise = require('request-promise');
 
 const User = require('../models/user');
-// const Restaurant = require('../models/restaurant');
+const Restaurant = require('../models/restaurant');
 
 User.collection.drop();
-// Restaurant.collection.drop();
+Restaurant.collection.drop();
 
 User
   .create([{

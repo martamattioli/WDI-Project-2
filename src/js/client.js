@@ -27,14 +27,16 @@ menuApp.initMap = function() {
 
     menuApp.searchInput = `${place.place_id}`;
 
-    // $
-    //   .get(`http://localhost:3000/restaurants/${menuApp.searchInput}`)
-    //   .fail(() => console.log('error'));
+    $.post( `http://localhost:3000/restaurants/new`, { name: place.name, restaurantId: place.place_id } );
+
+    $('#pac-input').attr('value',`${place.name}`);
+
+    $('#searchForm').on('submit', () => {
+      $('#searchForm').attr('action', `/restaurants/${place.place_id}`);
+    });
   });
 };
 
-$(menuApp.init.bind(menuApp));
 
-// module.exports = {
-//   searchInput: menuApp.searchInput
-// };
+
+$(menuApp.init.bind(menuApp));
