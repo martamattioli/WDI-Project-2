@@ -76,9 +76,7 @@ function initMap() {
 
     $('#pac-input').attr('value',`${place.name}`);
 
-    $('#searchForm').on('submit', () => {
-      $('#searchForm').attr('action', `/restaurants/${place.place_id}`);
-    });
+    $('#searchForm').attr('action', `/restaurants/${place.place_id}`).submit();
   });
 }
 
