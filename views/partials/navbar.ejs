@@ -3,12 +3,12 @@
     <ul>
       <% if (locals.isLoggedIn) { %>
         <li><a href="/">Home</a></li>
-        <li><a href="/logout">Log Out</a></li>
+        <li id="logout" data-value="0"><a href="/logout">Log Out</a></li>
         <li><a href="/users/<%= user._id %>/edit">Edit Profile</a></li>
         <li><a href="/users/<%= user._id %>"><%= user.firstName %></a></li>
       <%} else { %>
         <li><a href="/">Home</a></li>
-        <li><a href="/login">Log In</a></li>
+        <li id="login" data-value="1"><a href="/login">Log In</a></li>
         <li><a href="/register">Register</a></li>
       <% } %>
     </ul>

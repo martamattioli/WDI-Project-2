@@ -19,40 +19,36 @@ function init() {
 }
 
 function updateVotes(e) {
-  // if (there is a logout div) {
-  //  run the whole function
-  // } else {
-  //  add a message on the top saying that you have to be logged in to perform the action
-  // }
-
-  const newValue = parseInt($(e.target).text()) + 1;
-  var restID = $('#restId')[0].innerHTML;
-  var elmID = $(e.target).siblings('div')[0].innerHTML;
-  var upvts = parseInt($(e.target).siblings('div')[1].innerHTML);
-  var dwnvts = parseInt($(e.target).siblings('div')[2].innerHTML);
-  if ($(e.target).attr('id') === 'upvote') {
-    var objToSend = {
-      id: elmID,
-      upvotes: parseInt(upvts + 1)
-    };
-  } else if ($(e.target).attr('id') === 'downvote') {
-    var objToSend = {
-      id: elmID,
-      downvotes: parseInt(dwnvts + 1)
-    };
-  }
-  // console.log(objToSend);
-  // console.log(window.location.origin);
-  $
-  .ajax({
-    url: `${window.location.origin}/restaurants/${restID}`,
-    type: 'PUT',
-    data: objToSend,
-    success: function(data) {
-      // console.log(data);
+  if(parseInt($('nav li:nth-child(2)').attr('data-value')) === 1) {
+    $('main').prepend('<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>You must be logged in to vote an item!</div>');
+  } else if (parseInt($('nav li:nth-child(2)').attr('data-value')) === 0) {
+    const newValue = parseInt($(e.target).text()) + 1;
+    var restID = $('#restId')[0].innerHTML;
+    var elmID = $(e.target).siblings('div')[0].innerHTML;
+    var upvts = parseInt($(e.target).siblings('div')[1].innerHTML);
+    var dwnvts = parseInt($(e.target).siblings('div')[2].innerHTML);
+    if ($(e.target).attr('id') === 'upvote') {
+      var objToSend = {
+        id: elmID,
+        upvotes: parseInt(upvts + 1)
+      };
+    } else if ($(e.target).attr('id') === 'downvote') {
+      var objToSend = {
+        id: elmID,
+        downvotes: parseInt(dwnvts + 1)
+      };
     }
-  });
-  $(e.target).text(newValue);
+    $
+    .ajax({
+      url: `${window.location.origin}/restaurants/${restID}`,
+      type: 'PUT',
+      data: objToSend,
+      success: function(data) {
+        // console.log(data);
+      }
+    });
+    $(e.target).text(newValue);
+  }
 }
 
 function initMap() {
