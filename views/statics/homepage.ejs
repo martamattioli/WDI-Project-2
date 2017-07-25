@@ -9,3 +9,13 @@
     </div>
   </div>
 </div>
+
+<div class="row">
+  <ul>
+    <% users.forEach(user => { %>
+      <li>
+        <a href="/users/<%= user._id %>"><%= user.firstName %></a>
+      </li>
+    <% }) %>
+  </ul>
+</div>

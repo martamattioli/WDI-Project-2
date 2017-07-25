@@ -54,9 +54,9 @@ app.use((req, res, next) => {
       }
       req.session.userId = user._id;
 
-      req.user = user;
+      req.currentUser = user;
 
-      res.locals.user = user;
+      res.locals.currentUser = user;
       res.locals.isLoggedIn = true;
 
       next();

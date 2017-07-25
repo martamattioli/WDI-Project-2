@@ -8,6 +8,8 @@ const menuItemSchema = new mongoose.Schema({
   otherOptions: String,
   upvotes: Number,
   downvotes: Number
+  // upvoteHistory: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
+  // downvoteHistory: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
 });
 
 const restaurantSchema = new mongoose.Schema({

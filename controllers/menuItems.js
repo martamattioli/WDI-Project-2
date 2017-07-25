@@ -27,36 +27,25 @@ function menuItemsCreate(req, res) {
   });
 }
 
-// findByIdAndUpdate(req.params.id, req.body)
-
 function menuItemsUpdate(req, res) {
-  console.log('*********************** HIT!');
-  console.log(req.params.restaurantId);
-  console.log('MENU ITEM ID **************' + req.body.id);
+  // console.log('*********************** HIT!');
+  // console.log(req.params.restaurantId);
+  // console.log('MENU ITEM ID **************' + req.body.id);
   Restaurant
   .findById(req.params.restaurantId)
   .exec()
   .then((restaurant) => {
-    console.log(restaurant.menuItem.find(obj => obj._id == req.body.id));
+    // console.log(restaurant.menuItem.find(obj => obj._id == req.body.id));
     if (req.body.upvotes) {
       restaurant.menuItem.find(obj => obj._id == req.body.id).upvotes = req.body.upvotes;
+      //add the id of the user to the array created in the menuItem schema
     } else {
       restaurant.menuItem.find(obj => obj._id == req.body.id).downvotes = req.body.downvotes;
+      //add the id of the user to the array created in the menuItem schema
     }
     restaurant.save();
-    console.log('AFTER ADJUSTMENT **************  ' + restaurant);
-    //     if(!restaurant) return res.status(404).render('statics/404');
-    //
-    //     for(const field in req.body) {
-    //       restaurant[field] = req.body[field];
-    //     }
-    //     return restaurant.save();
-
+    // console.log('AFTER ADJUSTMENT **************  ' + restaurant);
   });
-  //   .then((restaurant) => {
-  //     console.log(restaurant.menuItem);
-  //     res.redirect(`/restaurants/${restaurant.restaurantId}`);
-  //   });
 }
 
 module.exports = {
