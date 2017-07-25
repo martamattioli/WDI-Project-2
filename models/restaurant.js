@@ -4,12 +4,12 @@ const menuItemSchema = new mongoose.Schema({
   itemName: { type: String, required: true, unique: true },
   itemCategory: String,
   price: Number,
-  photos: [{ type: String }],
+  photos: String,
   otherOptions: String,
   upvotes: Number,
-  downvotes: Number
-  // upvoteHistory: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
-  // downvoteHistory: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
+  downvotes: Number,
+  upvoteHistory: [{ type: String }],
+  downvoteHistory: [{ type: String }]
 });
 
 const restaurantSchema = new mongoose.Schema({

@@ -20,9 +20,19 @@ function menuItemsCreate(req, res) {
   .findOne({ restaurantId: req.params.restaurantId })
   .exec()
   .then(restaurant => {
+    if (req.body.upvotes > 0) {
+      req.body.upvoteHistory = [];
+      req.body.upvoteHistory.push(req.session.userId);
+      req.body.downvoteHistory = ['blank'];
+    } else {
+      req.body.downvoteHistory = [];
+      req.body.downvoteHistory.push(req.session.userId);
+      req.body.upvoteHistory = ['blank'];
+    }
     restaurant.menuItem.push(req.body);
     restaurant.save(); //because I'm not running update, so I have to run save, in order to save changes in the database
-    console.log(`After I add new menu item ${restaurant}`);
+    // console.log(`After I add new menu item ${restaurant}`);
+    console.log(restaurant);
     res.redirect(`/restaurants/${restaurant.restaurantId}`);
   });
 }
@@ -35,16 +45,34 @@ function menuItemsUpdate(req, res) {
   .findById(req.params.restaurantId)
   .exec()
   .then((restaurant) => {
-    // console.log(restaurant.menuItem.find(obj => obj._id == req.body.id));
+    var menuItems = restaurant.menuItem.find(obj => obj._id == req.body.id);
     if (req.body.upvotes) {
-      restaurant.menuItem.find(obj => obj._id == req.body.id).upvotes = req.body.upvotes;
-      //add the id of the user to the array created in the menuItem schema
+      console.log('**************UPVOTED!!!!');
+      console.log(menuItems.upvoteHistory);
+      menuItems.upvoteHistory.forEach(item => {
+        if (String(req.session.userId) === String(item)) {
+          console.log('cannot vote twice!');
+        } else {
+          console.log('NO UPVOTES YET');
+          menuItems.upvotes = req.body.upvotes;
+          //push the user id into the array of upvotes
+          menuItems.upvoteHistory.push(`${req.session.userId}`);
+        }
+      });
+      // console.log(menuItems.upvoteHistory);
     } else {
-      restaurant.menuItem.find(obj => obj._id == req.body.id).downvotes = req.body.downvotes;
-      //add the id of the user to the array created in the menuItem schema
+      menuItems.downvoteHistory.forEach(item => {
+        if (String(req.session.userId) === String(item)) {
+          console.log('cannot vote twice!');
+        } else {
+          menuItems.downvotes = req.body.downvotes;
+          //push the user id into the array of upvotes
+          menuItems.downvoteHistory.push(`${req.session.userId}`);
+        }
+      });
     }
     restaurant.save();
-    // console.log('AFTER ADJUSTMENT **************  ' + restaurant);
+    console.log('AFTER ADJUSTMENT **************  ' + restaurant);
   });
 }
 

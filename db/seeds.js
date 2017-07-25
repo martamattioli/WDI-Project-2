@@ -17,6 +17,7 @@ User
     lastName: 'Mattioli',
     email: 'marta_mattio@hotmail.it',
     password: 'cat',
+    passwordConfirmation: 'cat',
     photo: 'http://fillmurray.com/200/200'
   }])
   .then((users) => {

@@ -16,9 +16,9 @@ function sessionsCreate(req, res) {
 
       req.session.userId = user._id;
 
-      return res.redirect('/')
-      // return res.redirect(req.session.returnTo || '/');
-      // delete req.session.returnTo;
+      // return res.redirect('/')
+      return res.redirect(req.session.returnTo || '/');
+      delete req.session.returnTo;
     });
 }
 
