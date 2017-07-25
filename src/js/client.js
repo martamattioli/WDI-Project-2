@@ -1,9 +1,9 @@
-var menuApp = menuApp || {};
+// var menuApp = menuApp || {};
 
 /* global google:ignore */
 
-menuApp.init = function() {
-  this.initMap();
+function init() {
+  initMap();
 
   $('input[type="radio"]').on('click', () => {
     if ($('#showUpvote').is(':checked')) {
@@ -15,58 +15,68 @@ menuApp.init = function() {
     }
   });
 
-  $('.votes').on('click', (e) => {
-    const originalValue = $(e.target).attr('data-value');
-    const turnedToNumber = parseFloat(originalValue);
-    const newValue = turnedToNumber + 1;
-    console.log($(e.target).attr('id'));
-    if ($(e.target).attr('id') === 'upvote') {
-      $.post(`${window.location.href}`, {
-        itemName: `${$('#post-item-name').attr('data-value')}`,
-        itemCategory: `${$('#post-item-category').attr('data-value')}`,
-        price: parseFloat(`${$('#post-item-price').attr('data-value')}`),
-        photos: [`${$('#post-item-photos').attr('data-value')}`],
-        otherOptions: `${$('#post-item-otherOptions').attr('data-value')}`,
-        upvotes: newValue,
-        downvotes: $('#downvote').attr('data-value')
-      });
-    } else if ($(e.target).attr('id') === 'downvote') {
-      $.post(`${window.location.href}`, {
-        itemName: `${$('#post-item-name').attr('data-value')}`,
-        itemCategory: `${$('#post-item-category').attr('data-value')}`,
-        price: parseFloat(`${$('#post-item-price').attr('data-value')}`),
-        photos: [`${$('#post-item-photos').attr('data-value')}`],
-        otherOptions: `${$('#post-item-otherOptions').attr('data-value')}`,
-        upvotes: $('#upvote').attr('data-value'),
-        downvotes: newValue
-      });
+  $('.votes').one('click', updateVotes);
+}
+
+function updateVotes(e) {
+  // if (there is a logout div) {
+  //  run the whole function
+  // } else {
+  //  add a message on the top saying that you have to be logged in to perform the action
+  // }
+
+  const newValue = parseInt($(e.target).text()) + 1;
+  var restID = $('#restId')[0].innerHTML;
+  var elmID = $(e.target).siblings('div')[0].innerHTML;
+  var upvts = parseInt($(e.target).siblings('div')[1].innerHTML);
+  var dwnvts = parseInt($(e.target).siblings('div')[2].innerHTML);
+  if ($(e.target).attr('id') === 'upvote') {
+    var objToSend = {
+      id: elmID,
+      upvotes: parseInt(upvts + 1)
+    };
+  } else if ($(e.target).attr('id') === 'downvote') {
+    var objToSend = {
+      id: elmID,
+      downvotes: parseInt(dwnvts + 1)
+    };
+  }
+  // console.log(objToSend);
+  // console.log(window.location.origin);
+  $
+  .ajax({
+    url: `${window.location.origin}/restaurants/${restID}`,
+    type: 'PUT',
+    data: objToSend,
+    success: function(data) {
+      // console.log(data);
     }
-
-    $(e.target).prev().children().val(newValue);
-    $(e.target).attr('data-value', newValue).html(newValue);
   });
-};
+  $(e.target).text(newValue);
+}
 
-menuApp.initMap = function() {
-  console.log(this);
-  this.input = document.getElementById('pac-input');
+function initMap() {
+  // console.log(this);
+  const input = document.getElementById('pac-input');
 
 
-  this.autocomplete = new google.maps.places.Autocomplete(menuApp.input, { types: [ 'establishment' ]});
+  const autocomplete = new google.maps.places.Autocomplete(input, { types: [ 'establishment' ]});
 
   // Set initial restrict to the greater list of countries.
-  this.autocomplete.setComponentRestrictions({
+  autocomplete.setComponentRestrictions({
     'country': ['uk']
   });
 
-  this.autocomplete.addListener('place_changed', function() {
-    var place = menuApp.autocomplete.getPlace();
+  autocomplete.addListener('place_changed', function() {
+    var place = autocomplete.getPlace();
     if (!place.geometry) {
       window.alert('Select a restaurant');
       return;
     }
-
-    $.post( `http://localhost:3000/restaurants/new`, { name: place.name, restaurantId: place.place_id, websiteURL: place.website, types: place.types, priceLevel: place.price_level, rating: place.rating, address: place.formatted_address, phoneNumber: place.international_phone_number });
+    // console.log(place);
+    var newVenue = { name: place.name, restaurantId: place.place_id, websiteURL: place.website, types: place.types, priceLevel: place.price_level, rating: place.rating, address: place.formatted_address, phoneNumber: place.international_phone_number };
+    // console.log(newVenue);
+    $.post( `http://localhost:3000/restaurants/new`, newVenue);
 
     $('#pac-input').attr('value',`${place.name}`);
 
@@ -74,7 +84,7 @@ menuApp.initMap = function() {
       $('#searchForm').attr('action', `/restaurants/${place.place_id}`);
     });
   });
-};
+}
 
 
-$(menuApp.init.bind(menuApp));
+$(init);

@@ -8,6 +8,16 @@ const users             = require('../controllers/users');
 const restaurants       = require('../controllers/restaurants'); //added
 const menuItems         = require('../controllers/menuItems'); //added
 
+function secureRoute(req, res, next) {
+  if (!req.session.userId) {
+    return req.session.regenerate(() => {
+      req.flash('danger', 'You must be logged in to view this content');
+      res.redirect('/login');
+    });
+  }
+  return next();
+}
+
 router.route('/')
 .get(statics.homepage);
 
@@ -34,13 +44,10 @@ router.route('/restaurants/new')
 
 router.route('/restaurants/:restaurantId')
 .get(restaurants.show)
-.post(menuItems.create)
-.put(menuItems.update);
-
-// router.route('/restaurants')
-// .post(menuItems.update);
+.post(secureRoute, menuItems.create)
+.put(secureRoute, menuItems.update);
 
 router.route('/restaurants/:restaurantId/menuItems/new')
-.get(menuItems.new);
+.get(secureRoute, menuItems.new);
 
 module.exports = router;
