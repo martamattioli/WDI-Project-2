@@ -5,14 +5,15 @@ const statics           = require('../controllers/statics');
 const registrations     = require('../controllers/registrations');
 const sessions          = require('../controllers/sessions');
 const users             = require('../controllers/users');
-const restaurants       = require('../controllers/restaurants'); //added
-const menuItems         = require('../controllers/menuItems'); //added
+const restaurants       = require('../controllers/restaurants');
+const menuItems         = require('../controllers/menuItems');
+const comments          = require('../controllers/comments'); //added
 
 function secureRoute(req, res, next) {
   if (!req.session.userId) {
     return req.session.regenerate(() => {
       req.flash('danger', 'You must be logged in to view this content');
-      req.session.returnTo = req.path; 
+      req.session.returnTo = req.path;
       res.redirect('/login');
     });
   }
@@ -47,6 +48,12 @@ router.route('/restaurants/:restaurantId')
 .get(restaurants.show)
 .post(secureRoute, menuItems.create)
 .put(secureRoute, menuItems.update);
+
+router.route('/restaurants/:restaurantId/menuItems/:menuItemId/comments/new')
+.post(comments.create);
+
+router.route('/restaurants/:restaurantId/menuItems/:menuItemId/comments/:commentId')
+.delete(comments.delete);
 
 router.route('/restaurants/:restaurantId/menuItems/new')
 .get(secureRoute, menuItems.new);

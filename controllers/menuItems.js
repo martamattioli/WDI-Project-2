@@ -35,7 +35,6 @@ function menuItemsCreate(req, res) {
 }
 
 function menuItemsUpdate(req, res) {
-  console.log(req.body)
   // a single user can upvote or downvote
   // only once for each option
   // if a user chose one option already, he/she can only choose the other option

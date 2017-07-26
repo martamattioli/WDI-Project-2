@@ -18,7 +18,7 @@
         <% } else {%>
           <input class="upvote-hidden-check-up" type="hidden" name="can_upvote" value="true">
         <% } %>
-        
+
         <button id="upvote" class="btn btn-success votes"><%= item.upvotes %></button>
 
         <% if( locals.currentUser && item.hasVoted('downvote', locals.currentUser.id) ){ %>
@@ -31,6 +31,24 @@
         <div style="display: none;"><%= item._id %></div>
         <div style="display: none;"><%= item.upvotes %></div>
         <div style="display: none;"><%= item.downvotes %></div>
+
+        <h4>Comments</h4>
+        <form action="/restaurants/<%= restaurant._id %>/menuItems/<%= item._id %>/comments/new" method="POST">
+          <input type="text" name="body">
+          <input type="submit" value="Post Comment">
+        </form>
+
+        <ul>
+          <% item.comments.forEach(comment => { %>
+            <li>
+              <p><%= comment.body %></p>
+              <form action="/restaurants/<%= restaurant._id %>/menuItems/<%= item._id %>/comments/<%= comment._id %>" method="POST">
+                <input type="hidden" name="_method" value="delete">
+                <input class="btn btn-danger" type="submit" value="Delete">
+              </form>
+            </li>
+          <% }) %>
+        </ul>
       </li>
     <% }) %>
   </ul>
