@@ -1,11 +1,13 @@
 <section class="restaurants-show">
   <div id="restId" style="display: none;"><%= restaurant._id %></div>
+  <div id="googleRestId" style="display: none;"><%= restaurant.restaurantId %></div>
   <h1><%= restaurant.name %></h1>
   <p>Address: <%= restaurant.address %></p>
   <p>Phone Number: <%= restaurant.phoneNumber %></p>
   <a href="<%= restaurant.websiteURL %>" target="_blank">Go to <%= restaurant.name %> <strong>website</strong></a>
   <p>Price Level: <%= restaurant.priceLevel %></p>
   <p>Google Rating: <%= restaurant.rating %></p>
+  <img src="<%= restaurant.photo %>" alt="<%= restaurant.name %>">
 
   <ul id="menu">
     <% restaurant.menuItem.forEach(item => { %>

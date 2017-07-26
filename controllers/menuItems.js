@@ -11,6 +11,7 @@ function menuItemsNew(req, res) {
   .findOne({ restaurantId: req.params.restaurantId })
   .exec()
   .then(restaurant => {
+    if(!restaurant) return res.status(404).render('statics/404');
     res.render('menuItems/new', { restaurant, itemCategories });
   });
 }
@@ -20,6 +21,8 @@ function menuItemsCreate(req, res) {
   .findOne({ restaurantId: req.params.restaurantId })
   .exec()
   .then(restaurant => {
+    if(!restaurant) return res.status(404).render('statics/404');
+    
     req.body.upvoteHistory = [];
     req.body.downvoteHistory = [];
     if (req.body.upvotes > 0)
@@ -42,6 +45,8 @@ function menuItemsUpdate(req, res) {
   .findById(req.params.restaurantId)
   .exec()
   .then((restaurant) => {
+    if(!restaurant) return res.status(404).render('statics/404');
+
     var menuItem = restaurant.menuItem.find(obj => obj._id == req.body.id);
     // HAS THE USER VOTED BEFORE?
     let hasVotedUpvote = menuItem.upvoteHistory.includes(req.session.userId.toString())
@@ -58,7 +63,7 @@ function menuItemsUpdate(req, res) {
         }
       }
     } else if(req.body.downvotes){ // voted down
-      //I Need to access the number of upvotes for that menu item
+      //I Need to access the number of downvotes for that menu item
       if(!menuItem.downvoteHistory.includes(req.session.userId.toString())){ // then user hasn't already voted down
         menuItem.downvoteHistory.push(req.session.userId);
         menuItem.downvotes += 1;

@@ -4,8 +4,11 @@
 
 
 function init() {
-  console.log($('nav'));
   ifHasLoggedIn();
+
+  ifIsOnHomepage();
+  ifIsOnRegisterPage();
+  // ifOnRestaurantDetails();
 
   initMap();
 
@@ -24,11 +27,25 @@ function init() {
   calculateScoreAndSort();
 }
 
+function ifIsOnRegisterPage() {
+  if($('.register-page').length > 0){
+    $('#login-home-form').css('display', 'none');
+    $('.the-whole-website').css('display', 'block');
+  }
+}
+
+function ifIsOnHomepage() {
+  if($('.search-bar-home').length === 0){  // return's true if element is present
+  // show or hide another div
+    $('<li><div id="locationField"><form id="searchForm" action="" method="GET"><input id="pac-input" class="controls" type="text" placeholder="Enter a location" value=""/></form></div>').appendTo($('nav ul'));
+  }
+}
+
 function ifHasLoggedIn() {
   const isUserLoggedIn = parseInt($('nav li:nth-child(2)').attr('data-value'));
   if (isUserLoggedIn === 0) {
     $('#login-home-form').css('display', 'none');
-    $('.search-form-home').css('display', 'block');
+    $('.the-whole-website').css('display', 'block');
     $('nav').css('display', 'block');
   }
 }
@@ -138,8 +155,13 @@ function initMap() {
       return;
     }
 
-    // console.log(place);
-    var newVenue = { name: place.name, restaurantId: place.place_id, websiteURL: place.website, types: place.types, priceLevel: place.price_level, rating: place.rating, address: place.formatted_address, phoneNumber: place.international_phone_number };
+    // $(place.photos).each(photo => {
+    //   console.log(place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
+    // });
+
+    // console.log(place.photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500}));
+
+    var newVenue = { name: place.name, restaurantId: place.place_id, websiteURL: place.website, types: place.types, priceLevel: place.price_level, rating: place.rating, address: place.formatted_address, phoneNumber: place.international_phone_number, photo: place.photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500}) };
     $.ajax({
       url: '/restaurants/new',
       method: 'POST',

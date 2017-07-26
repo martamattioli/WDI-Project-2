@@ -36,6 +36,7 @@ const restaurantSchema = new mongoose.Schema({
   rating: Number,
   address: String,
   phoneNumber: String,
+  photo: String,
   menuItem: [ menuItemSchema ]
 });
 

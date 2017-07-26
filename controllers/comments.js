@@ -5,6 +5,8 @@ function commentsCreate(req, res) {
   .findById(req.params.restaurantId)
   .exec()
   .then((restaurant) => {
+    if(!restaurant) return res.status(404).render('statics/404');
+
     const menuItem = restaurant.menuItem.find(obj => obj.id);
     req.body.user = req.session.userId;
     menuItem.comments.push(req.body);
@@ -17,7 +19,8 @@ function commentsCreate(req, res) {
     .populate('menuItem.comments.user')
     .exec()
     .then(restaurant => {
-      console.log(restaurant);
+      if(!restaurant) return res.status(404).render('statics/404');
+
       res.redirect(`/restaurants/${restaurant.restaurantId}`);
     });
   });
@@ -29,6 +32,8 @@ function commentsDelete(req, res) {
   .findById(req.params.restaurantId)
   .exec()
   .then((restaurant) => {
+    if(!restaurant) return res.status(404).render('statics/404');
+    
     const menuItem = restaurant.menuItem.find(obj => obj.id);
     const comment = menuItem.comments.find(obj => obj.id);
     comment.remove();

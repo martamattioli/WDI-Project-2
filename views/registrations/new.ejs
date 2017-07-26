@@ -1,8 +1,10 @@
-<h1>Registrations</h1>
+<h1 class="register-page">Registrations</h1>
 
 <% if (locals.message) { %>
   <p><%= message %></p>
 <% } %>
+
+<p>Already have an account? <a href="/">Login</a></p>
 
 <form method="POST" action="/register">
   <div class="form-group">

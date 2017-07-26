@@ -36,7 +36,7 @@ function restaurantsShow(req, res) {
     .populate('menuItem.comments.user')
     .exec()
     .then(restaurant => {
-      if (!restaurant) return res.status(404).send('Page not found');
+      if (!restaurant) return res.status(404).render('statics/404');
       res.render('restaurants/show', { restaurant });
     })
     .catch(err => {
