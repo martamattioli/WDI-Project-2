@@ -18,6 +18,7 @@
         <% } else {%>
           <input class="upvote-hidden-check-up" type="hidden" name="can_upvote" value="true">
         <% } %>
+        
         <button id="upvote" class="btn btn-success votes"><%= item.upvotes %></button>
 
         <% if( locals.currentUser && item.hasVoted('downvote', locals.currentUser.id) ){ %>
