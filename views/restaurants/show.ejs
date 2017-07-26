@@ -12,8 +12,21 @@
     <% restaurant.menuItem.forEach(item => { %>
       <li>
         <h3><%= item.itemName %> - (<%= item.itemCategory %>), £<%= item.price %>, <%= item.otherOptions %></h3>
-        <button id="upvote" data-value="<%= item %>" class="btn btn-success votes"><%= item.upvotes %></button>
-        <button id="downvote" data-value="<%= item %>" class="btn btn-danger votes"><%= item.downvotes %></button>
+
+        <% if( locals.currentUser && item.hasVoted('upvote', locals.currentUser.id) ){ %>
+          <input class="upvote-hidden-check-up" type="hidden" name="can_upvote" value="false">
+        <% } else {%>
+          <input class="upvote-hidden-check-up" type="hidden" name="can_upvote" value="true">
+        <% } %>
+        <button id="upvote" class="btn btn-success votes"><%= item.upvotes %></button>
+
+        <% if( locals.currentUser && item.hasVoted('downvote', locals.currentUser.id) ){ %>
+          <input class="downvote-hidden-check-down" type="hidden" name="can_downvote" value="false">
+        <% } else {%>
+          <input class="downvote-hidden-check-down" type="hidden" name="can_downvote" value="true">
+        <% } %>
+
+        <button id="downvote" class="btn btn-danger votes"><%= item.downvotes %></button>
         <div style="display: none;"><%= item._id %></div>
         <div style="display: none;"><%= item.upvotes %></div>
         <div style="display: none;"><%= item.downvotes %></div>

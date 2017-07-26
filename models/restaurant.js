@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const menuItemSchema = new mongoose.Schema({
-  itemName: { type: String, required: true, unique: true },
+  itemName: { type: String, required: true },
   itemCategory: String,
   price: Number,
   photos: String,
@@ -11,6 +11,15 @@ const menuItemSchema = new mongoose.Schema({
   upvoteHistory: [{ type: String }],
   downvoteHistory: [{ type: String }]
 });
+
+menuItemSchema.methods.hasVoted = function(voteType, userID){
+  if(voteType === 'upvote'){
+    return this.upvoteHistory.includes(userID.toString());
+  } else {
+    return this.downvoteHistory.includes(userID.toString());
+  }
+};
+
 
 const restaurantSchema = new mongoose.Schema({
   name: String,
