@@ -8,9 +8,9 @@
   <p>Price Level: <%= restaurant.priceLevel %></p>
   <p>Google Rating: <%= restaurant.rating %></p>
 
-  <ul>
+  <ul id="menu">
     <% restaurant.menuItem.forEach(item => { %>
-      <li>
+      <li data-score="">
         <h3><%= item.itemName %> - (<%= item.itemCategory %>), £<%= item.price %>, <%= item.otherOptions %></h3>
 
         <% if( locals.currentUser && item.hasVoted('upvote', locals.currentUser.id) ){ %>
