@@ -2,7 +2,11 @@
 
 /* global google:ignore */
 
+
 function init() {
+  console.log($('nav'));
+  ifHasLoggedIn();
+
   initMap();
 
   $('input[type="radio"]').on('click', () => {
@@ -18,6 +22,15 @@ function init() {
   $('.votes').on('click', updateVotes);
 
   calculateScoreAndSort();
+}
+
+function ifHasLoggedIn() {
+  const isUserLoggedIn = parseInt($('nav li:nth-child(2)').attr('data-value'));
+  if (isUserLoggedIn === 0) {
+    $('#login-home-form').css('display', 'none');
+    $('.search-form-home').css('display', 'block');
+    $('nav').css('display', 'block');
+  }
 }
 
 function calculateScoreAndSort() {
@@ -45,6 +58,7 @@ function cannotDoubleVoteMsg() {
 
 function updateVotes(e) {
   const isUserLoggedIn = parseInt($('nav li:nth-child(2)').attr('data-value'));
+
   const whatButtonDidIClick = $(e.target).attr('id');
   const inputSiblings = $(e.target).siblings('input');
   const inputSiblingUp = inputSiblings[0];
