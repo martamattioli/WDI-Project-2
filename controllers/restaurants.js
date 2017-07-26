@@ -33,11 +33,11 @@ function restaurantsShow(req, res) {
   //show it to me
   Restaurant
     .findOne({restaurantId: req.params.restaurantId})
+    .populate('menuItem.comments.user')
     .exec()
     .then(restaurant => {
       if (!restaurant) return res.status(404).send('Page not found');
       res.render('restaurants/show', { restaurant });
-      // res.redirect(`/restaurants/${restaurant.restaurantId}`);
     })
     .catch(err => {
       res.status(500).render('error', { error: err });

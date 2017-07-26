@@ -4,7 +4,7 @@
   <p>Address: <%= restaurant.address %></p>
   <p>Phone Number: <%= restaurant.phoneNumber %></p>
   <a href="<%= restaurant.websiteURL %>" target="_blank">Go to <%= restaurant.name %> <strong>website</strong></a>
-
+  <p><%= restaurant.restaurantId %></p>
   <p>Price Level: <%= restaurant.priceLevel %></p>
   <p>Google Rating: <%= restaurant.rating %></p>
 
@@ -38,17 +38,20 @@
           <input type="submit" value="Post Comment">
         </form>
 
-        <ul>
+        <div>
           <% item.comments.forEach(comment => { %>
-            <li>
+            <div>
+              <h5><%= comment.user.firstName %></a></h5>
               <p><%= comment.body %></p>
-              <form action="/restaurants/<%= restaurant._id %>/menuItems/<%= item._id %>/comments/<%= comment._id %>" method="POST">
-                <input type="hidden" name="_method" value="delete">
-                <input class="btn btn-danger" type="submit" value="Delete">
-              </form>
-            </li>
+              <% if (locals.currentUser && comment.user.id === locals.currentUser.id) { %>
+                <form action="/restaurants/<%= restaurant._id %>/menuItems/<%= item._id %>/comments/<%= comment._id %>" method="POST">
+                  <input type="hidden" name="_method" value="delete">
+                  <input class="btn btn-danger" type="submit" value="Delete">
+                </form>
+              <% } %>
+            </div>
           <% }) %>
-        </ul>
+        </div>
       </li>
     <% }) %>
   </ul>

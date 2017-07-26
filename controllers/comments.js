@@ -6,10 +6,22 @@ function commentsCreate(req, res) {
   .exec()
   .then((restaurant) => {
     const menuItem = restaurant.menuItem.find(obj => obj.id);
+    req.body.user = req.session.userId;
     menuItem.comments.push(req.body);
+    console.log(menuItem.comments);
     restaurant.save();
-    res.redirect(`/restaurants/${restaurant.restaurantId}`);
+  })
+  .then(() => {
+    Restaurant
+    .findById(req.params.restaurantId)
+    .populate('menuItem.comments.user')
+    .exec()
+    .then(restaurant => {
+      console.log(restaurant);
+      res.redirect(`/restaurants/${restaurant.restaurantId}`);
+    });
   });
+
 }
 
 function commentsDelete(req, res) {
