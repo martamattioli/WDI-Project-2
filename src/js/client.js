@@ -13,6 +13,42 @@ function init() {
     $('footer').css({'position': 'fixed', 'bottom': '0px', 'width': '100%'});
   }
 
+  if (parseInt($('.rest-details-price').text()) === 1) {
+    $('.rest-details-price').text('£');
+  } else if (parseInt($('.rest-details-price').text()) === 2) {
+    $('.rest-details-price').text('££');
+  } else if (parseInt($('.rest-details-price').text()) === 3) {
+    $('.rest-details-price').text('£££');
+  }
+
+  if ($('.menu-item').length === 0) {
+    $('<h2 class="no-items">No-one has added any menu items yet!</h2>').appendTo($('.menu-container'));
+  } else {
+    $('.no-items').remove();
+  }
+
+  switch ($('.item-category').text()) {
+    case 'Starter':
+      $('.image-category').attr('src', '/images/starter-icon.svg');
+      break;
+    case 'Main Course':
+      $('.image-category').attr('src', '/images/main-icon.svg');
+      break;
+    case 'Dessert':
+      $('.image-category').attr('src', '/images/dessert-icon.svg');
+      break;
+    default:
+      $('.image-category').attr('src', '/images/main-icon.svg');
+  }
+
+  if ($('.price-item-span').text() === '') {
+    $('.price-item-span').prev().remove();
+  }
+
+  if ($('.otherOptions-item-span').text() === '') {
+    $('.otherOptions-item-span').prev().remove();
+  }
+
   initMap();
 
   $('input[type="radio"]').on('click', () => {

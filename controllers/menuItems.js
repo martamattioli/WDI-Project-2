@@ -1,7 +1,7 @@
 const Restaurant = require('../models/restaurant');
 const itemCategories = [
   'Breakfast',
-  'Appetizer',
+  'Starter',
   'Main Course',
   'Dessert'
 ];
@@ -22,7 +22,7 @@ function menuItemsCreate(req, res) {
   .exec()
   .then(restaurant => {
     if(!restaurant) return res.status(404).render('statics/404');
-    
+
     req.body.upvoteHistory = [];
     req.body.downvoteHistory = [];
     if (req.body.upvotes > 0)

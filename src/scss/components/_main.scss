@@ -1,4 +1,4 @@
-body {
+body, .restaurant-info-container {
   @include background-image-styling;
   background-size: cover;
 }
@@ -64,6 +64,60 @@ body {
     margin: 20px 0;
     span {
       font-weight: bold;
+    }
+  }
+}
+
+
+// ****************** RESTAURANT SHOW ********************* //
+
+.restaurants-show {
+  .restaurant-info-container {
+    padding: 0;
+  }
+
+  .black-overlay {
+    background: $form-opaque-black;
+    text-align: center;
+    padding: 40px 0;
+    h1 {
+      font-weight: bold;
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+    h1, h3, p {
+      color: $secnd-white;
+    }
+    .icons {
+      margin-top: 40px;
+      .rest-details {
+        margin-top: 20px;
+      }
+      a {
+        color: $secnd-white;
+        display: block;
+        &:hover {
+          color: $secnd-white;
+        }
+      }
+    }
+  }
+
+  .menu-container {
+    margin: 40px auto;
+    .no-items {
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+
+  .add-item {
+    padding: 20px 0;
+    margin-top: 33px;
+    margin: auto;
+    width: 70%;
+    &:hover {
+      text-decoration: none;
     }
   }
 }
