@@ -1,6 +1,8 @@
-<div class="main-forms row">
-  <div class="col-12">
-    <h1>USER EDIT INFO</h1>
+<div class="main-forms row edit-user-info">
+  <div class="col-12 form-contents">
+    <a href="/users/<%= user._id %>" class="bold-link go-back-link">Go back</a>
+  </div>
+  <div class="col-12 form-contents">
 
     <% if (locals.message) { %>
       <p><%= message %></p>
@@ -32,7 +34,10 @@
         <label for="passwordConfirmation">Confirm Password</label>
         <input type="password" name="passwordConfirmation" id="passwordConfirmation" class="form-control" value="<%= user.password %>">
       </div>
-      <button class="btn btn-primary">Update Profile</button>
+      <button class="orange-button">UPDATE PROFILE</button>
     </form>
+  </div>
+  <div class="col-12">
+    <a href="/users/<%= user._id %>" class="cancel-button">CANCEL</a>
   </div>
 </div>

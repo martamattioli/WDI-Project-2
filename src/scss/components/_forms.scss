@@ -1,0 +1,38 @@
+.main-forms {
+  background: $form-opaque;
+  padding: 30px;
+  max-width: 500px;
+  margin: 20px auto 0;
+  form {
+    input {
+      border-radius: 0;
+      border: none;
+    }
+  }
+  .register-par {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 20px;
+  }
+  .login-par {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+}
+
+::-webkit-input-placeholder {
+  @include placeholder-style;
+}
+
+.edit-user-info {
+  form {
+    label {
+      display: block;
+      text-align: center;
+      font-size: 20px;
+    }
+    button {
+      margin-top: 20px;
+    }
+  }
+}

@@ -43,8 +43,8 @@ function ifIsOnRegisterPage() {
 function ifIsOnHomepage() {
   if($('.search-bar-home').length === 0){  // return's true if element is present
   // show or hide another div
-    $('<li><div id="locationField"><form id="searchForm" action="" method="GET"><input id="pac-input" class="controls" type="text" placeholder="Enter a location" value=""/></form></div>').appendTo($('nav ul'));
-  }
+  $('<li><div id="locationField"><form id="searchForm" action="" method="GET"><input id="pac-input" class="controls" type="text" placeholder="Enter a location" value=""/></form></div>').appendTo($('nav ul'));
+}
 }
 
 function ifHasLoggedIn() {
@@ -54,6 +54,10 @@ function ifHasLoggedIn() {
     $('.logo-div').remove();
     $('.the-whole-website').css('display', 'block');
     $('nav').css('display', 'block');
+    if ($('.edit-user-info').length > 0) {
+      $('<div class="row logo-div"><div class="col-12"><a href="/"><img src="/images/logo.svg" alt="Taste the Menu Logo" class="img-responsive"></a></div></div>').prependTo($('main'));
+      $('nav').remove();
+    }
   }
 }
 
@@ -168,7 +172,7 @@ function initMap() {
 
     // console.log(place.photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500}));
 
-    var newVenue = { name: place.name, restaurantId: place.place_id, websiteURL: place.website, types: place.types, priceLevel: place.price_level, rating: place.rating, address: place.formatted_address, phoneNumber: place.international_phone_number, photo: place.photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500}) };
+    var newVenue = { name: place.name, restaurantId: place.place_id, websiteURL: place.website, types: place.types, priceLevel: place.price_level, rating: place.rating, address: place.formatted_address, phoneNumber: place.international_phone_number, photo: place.photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500})};
     $.ajax({
       url: '/restaurants/new',
       method: 'POST',

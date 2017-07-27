@@ -1,8 +1,14 @@
 //HELPERS
 @import "helpers/variables";
+@import "helpers/mixins";
 
 //COMPONENTS
 @import "components/forms";
+@import "components/logo";
+@import "components/typography";
+@import "components/buttons";
+@import "components/nav";
+@import "components/footer";
 
 h1 {
   text-align: center;

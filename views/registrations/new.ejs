@@ -1,39 +1,40 @@
-<section class="main-forms row">
-  <div class="col-12">
-    <h1 class="register-page">Registrations</h1>
+<section class="main-forms row register-page">
+  <div class="col-12 form-contents register-par login-par">
+    <p>Already have an account? <a class="bold-link" href="/">Log In</a></p>
+  </div>
+
+  <div class="col-12 form-contents">
 
     <% if (locals.message) { %>
       <p><%= message %></p>
     <% } %>
 
-    <p>Already have an account? <a href="/">Login</a></p>
-
     <form method="POST" action="/register">
       <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input type="text" name="firstName" id="firstName" class="form-control">
+        <%# <label for="firstName">First Name</label>%>
+        <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name">
       </div>
       <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input type="text" name="lastName" id="lastName" class="form-control">
+        <%# <label for="lastName">Last Name</label>%>
+        <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name">
       </div>
       <div class="form-group">
-        <label for="photo">Profile Photo</label>
-        <input type="text" name="photo" id="photo" class="form-control" value="https://www.fillmurray.com/200/200">
+        <%# <label for="photo">Profile Photo</label>%>
+        <input type="text" name="photo" id="photo" class="form-control" placeholder="https://www.fillmurray.com/200/200">
       </div>
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" class="form-control">
+        <%# <label for="email">Email</label>%>
+        <input type="text" name="email" id="email" class="form-control" placeholder="Email">
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="form-control">
+        <%# <label for="password">Password</label>%>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
       </div>
       <div class="form-group">
-        <label for="passwordConfirmation">Confirm Password</label>
-        <input type="password" name="passwordConfirmation" id="passwordConfirmation" class="form-control">
+        <%# <label for="passwordConfirmation">Confirm Password</label>%>
+        <input type="password" name="passwordConfirmation" id="passwordConfirmation" class="form-control" placeholder="Conform Password">
       </div>
-      <button class="btn btn-primary">Register</button>
+      <button class="orange-button">Register</button>
     </form>
   </div>
 </section>

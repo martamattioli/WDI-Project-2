@@ -1,21 +1,22 @@
 <div class="row logo-div">
   <div class="col-12">
-    <img src="/images/logo.svg" alt="Taste the Menu Logo" class="img-responsive">
+    <a href="/"><img src="/images/logo.svg" alt="Taste the Menu Logo" class="img-responsive"></a>
   </div>
 </div>
 <div id="login-home-form" class="main-forms row">
-  <h1 class="col-12">Login</h1>
-  <form method="POST" action="/login" class="col-12">
+  <form method="POST" action="/login" class="form-contents col-12">
     <div class="form-group">
-      <label for="email">Email</label>
-      <input type="text" name="email" id="email" class="form-control">
+      <%# <label for="email">Email</label>%>
+      <input type="text" name="email" id="email" class="form-control" placeholder="Email">
     </div>
     <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" class="form-control">
+      <%# <label for="password">Password</label>%>
+      <input type="password" name="password" id="password" class="form-control" placeholder="Password">
     </div>
 
-    <button class="btn btn-primary">Login</button>
+    <button class="orange-button">LOG IN</button>
   </form>
-  <p>Don't have an account? <a href="/register">register</a></p>
+  <div class="col-12 form-contents register-par">
+    <p>Don't have an account? <a class="bold-link" href="/register">register</a></p>
+  </div>
 </div>
