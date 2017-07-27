@@ -12,7 +12,7 @@ function init() {
   if ($(document.body).height() < $(window).height()) {
     $('footer').css({'position': 'fixed', 'bottom': '0px', 'width': '100%'});
   }
-  
+
   switch (parseInt($('.rest-details-price').text())) {
     case 1:
       $('.rest-details-price').text('£');
@@ -36,25 +36,36 @@ function init() {
     $('.no-items').remove();
   }
 
-  switch ($('.item-category').text()) {
-    case 'Starter':
-      $('.image-category').attr('src', '/images/starter-icon.svg');
-      break;
-    case 'Main Course':
-      $('.image-category').attr('src', '/images/main-icon.svg');
-      break;
-    case 'Dessert':
-      $('.image-category').attr('src', '/images/dessert-icon.svg');
-      break;
-    default:
-      $('.image-category').attr('src', '/images/main-icon.svg');
-  }
+  const itemCategoryArray = $('.item-category');
+  const imageCategoryArray = $('.image-category');
 
-  $('.critiques').on('click', () => {
-    $('.comment-section').fadeIn();
+  imageCategoryArray.each(function(category) {
+    const imageCategory = $(imageCategoryArray[category]);
+    const itemCategory = $(itemCategoryArray[category]);
+
+    if(itemCategory.text() === 'Starter') {
+      imageCategory.attr('src', '/images/starter-icon.svg');
+    } else if(itemCategory.text() === 'Main Course') {
+      imageCategory.attr('src', '/images/main-icon.svg');
+    } else if(itemCategory.text() === 'Dessert') {
+      imageCategory.attr('src', '/images/dessert-icon.svg');
+    } else {
+      imageCategory.attr('src', '/images/main-icon.svg');
+    }
   });
-  $('.close-comment-section').on('click', () => {
-    $('.comment-section').fadeOut();
+
+  const critiques = $('.critiques');
+
+  critiques.each(function(critique) {
+    $($('.comment-section')[critique]).attr('data-value', critique);
+  });
+
+  const closeComments = $('.close-comment-section')[0];
+  $('.critiques').on('click', (e) => {
+    $(e.target).parent().next().fadeIn();
+  });
+  $('.close-comment-section').on('click', (e) => {
+    $(e.target).parent().fadeOut();
   });
 
   initMap();
@@ -113,10 +124,8 @@ function calculateScoreAndSort() {
   const menuList = $('.item-voting-system');
   menuList.each((list) => {
     const voteButton = $(menuList[list]).children('.sort-this-out');
-    console.log($(menuList[list]).children('.sort-this-out'));
     const upVoteButtonValue = parseInt(($($(voteButton)[0]).text()));
     const downVoteButtonValue = parseInt(($($(voteButton)[1]).text()));
-    console.log(upVoteButtonValue, downVoteButtonValue);
     $($('#menu li')[list]).attr('data-score', `${upVoteButtonValue - downVoteButtonValue}`);
   });
 
