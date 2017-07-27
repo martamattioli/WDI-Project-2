@@ -47,7 +47,7 @@ function ifIsOnHomepage() {
   if ($('.search-bar-home').length > 0 && $('.main-forms').length === 0) {
     $('body').css('background-image', 'url(/images/homepage-background.jpeg)');
   } else if($('.search-bar-home').length === 0){
-    $('<li><div id="locationField"><form id="searchForm" action="" method="GET"><input id="pac-input" class="controls" type="text" placeholder="Enter a location" value=""/></form></div>').prependTo($('nav .navbar-nav'));
+    $('<form class="form-inline mr-2" style="display: inline-block;"><input id="pac-input" class="form-control mr-sm-2 controls" type="text" placeholder="Search restaurant..." value=""/></form>').insertAfter($('.navbar-nav'));
   }
 }
 
@@ -155,8 +155,11 @@ function updateVotes(e) {
 function initMap() {
   const input = document.getElementById('pac-input');
 
-
-  const autocomplete = new google.maps.places.Autocomplete(input, { types: [ 'establishment' ]});
+  var options = {
+    types: ['establishment'],
+    componentRestrictions: {country: 'uk'}
+  };
+  const autocomplete = new google.maps.places.Autocomplete(input, options);
 
   // Set initial restrict to the greater list of countries.
   autocomplete.setComponentRestrictions({

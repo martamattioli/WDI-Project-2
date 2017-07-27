@@ -41,4 +41,11 @@ nav {
       border-color: $light-grey;
     }
   }
+  form {
+    margin-left: 40px;
+  }
+  .form-control {
+    border-radius: 0;
+    border: none;
+  }
 }
