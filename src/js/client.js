@@ -179,7 +179,7 @@ function initMap() {
 
     // console.log(place.photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500}));
 
-    var newVenue = { name: place.name, restaurantId: place.place_id, websiteURL: place.website, types: place.types, priceLevel: place.price_level, rating: place.rating, address: place.formatted_address, phoneNumber: place.international_phone_number, photo: place.photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500})};
+    var newVenue = { name: place.name, restaurantId: place.place_id, websiteURL: place.website, types: place.types, priceLevel: place.price_level, rating: place.rating, address: place.formatted_address, phoneNumber: place.international_phone_number, photo: place.photos[0].getUrl({'maxWidth': 1920, 'maxHeight': 500})};
     $.ajax({
       url: '/restaurants/new',
       method: 'POST',
