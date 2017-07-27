@@ -42,3 +42,24 @@ body {
     }
   }
 }
+
+// **************** USER SHOW ********************* //
+
+.user-show {
+  margin-top: 60px;
+  text-align: center;
+  .profile-pic-big {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    @include background-image-styling;
+    background-size: contain;
+    border-radius: 50%;
+  }
+  p {
+    margin: 20px 0;
+    span {
+      font-weight: bold;
+    }
+  }
+}

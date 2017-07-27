@@ -25,7 +25,12 @@
 }
 
 .edit-user-info {
+  .form-contents:nth-child(1) {
+    text-align: center;
+  }
+
   form {
+    text-align: center;
     label {
       display: block;
       text-align: center;

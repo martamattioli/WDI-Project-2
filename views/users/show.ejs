@@ -1,9 +1,12 @@
-<h1>USERS SHOW</h1>
+<section class="row user-show">
+  <div class="col-12">
+    <div class="profile-pic-big" style="background-image: url('<%= user.photo %>')"></div>
+    <p><span>First Name:</span> <%= user.firstName %></p>
+    <p><span>Last Name:</span> <%= user.lastName %></p>
+    <p><span>First Email:</span> <%= user.email %></p>
 
-<p><%= user.firstName %></p>
-<p><%= user.lastName %></p>
-<p><%= user.email %></p>
-
-<% if (user.id === locals.currentUser.id) { %>
-  <a href="/users/<%= user._id %>/edit">EDIT INFO</a>
-<% } %>
+    <% if (user.id === locals.currentUser.id) { %>
+      <a class="orange-button" href="/users/<%= user._id %>/edit">EDIT INFO</a>
+    <% } %>
+  </div>
+</section>

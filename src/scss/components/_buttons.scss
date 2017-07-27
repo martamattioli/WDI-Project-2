@@ -6,6 +6,9 @@
   padding: 5px 0;
   font-weight: bold;
   font-size: 20px;
+  &:hover {
+    background: darken($secnd-orange, 10%);
+  }
 }
 
 
@@ -18,7 +21,7 @@
   display: block;
   width: 100%;
   border: none;
-  background: $secnd-red;
+  background: $main-red;
   padding: 5px 0;
   color: white;
   font-weight: normal;
@@ -26,13 +29,33 @@
   text-align: center;
   &:hover {
     color: $secnd-white;
+    background: darken($main-red, 10%);
   }
 }
 
 .go-back-link {
-  display: block;
+  display: inline-block;
   text-align: center;
   margin-bottom: 30px;
+  padding: 10px;
+  // border: solid 2px $typo-color;
+  background: $main-red;
+  color: $secnd-white;
+  &:hover {
+    color: $secnd-white;
+    text-decoration: none;
+    background: darken($main-red, 10%);
+  }
+}
+
+.user-show {
+  a {
+    display: inline-block;
+    width: 200px;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 a {
