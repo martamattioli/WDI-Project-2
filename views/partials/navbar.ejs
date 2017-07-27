@@ -1,15 +1,28 @@
-<nav class="row" style="display: none;">
-  <div class="col-12">
-    <ul>
-      <% if (locals.isLoggedIn) { %>
-        <li><a href="/">Home</a></li>
-        <li id="logout" data-value="0"><a href="/logout">Log Out</a></li>
-        <li><a href="/users/<%= currentUser._id %>"><%= currentUser.firstName %></a></li>
-      <%} else { %>
-        <li><a href="/">Home</a></li>
-        <li id="login" data-value="1"><a href="/login">Log In</a></li>
-        <li><a href="/register">Register</a></li>
-      <% } %>
-    </ul>
-  </div>
+<div style="display: none;">
+  <% if (locals.isLoggedIn) { %>
+    <li class="nav-item" id="logout" data-value="0"></li>
+  <%} else { %>
+    <li id="login" data-value="1"></li>
+  <% } %>
+</div>
+<nav class="navbar" style="display: none;">
+  <a class="navbar-brand ml-2" href="/">
+    <img src="/images/logo.svg" width="60" height="60" alt="Taste the Menu Logo">
+  </a>
+  <%# <form class="form-inline mr-2" style="display: inline-block;">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search Restaurant">
+  </form>%>
+  <ul class="navbar-nav mr-auto" style="display: inline-block;">
+    <% if (locals.isLoggedIn) { %>
+      <li class="nav-item dropdown">
+        <a href="/users/<%= currentUser._id %>" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="profile-picture" style="background-image: url(<%= currentUser.photo %>);"><span><%= currentUser.firstName %></span></div>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/users/<%= currentUser._id %>"><%= currentUser.firstName %></a>
+          <a class="dropdown-item" href="/logout">Log Out</a>
+        </div>
+      </li>
+    <% } %>
+  </ul>
 </nav>

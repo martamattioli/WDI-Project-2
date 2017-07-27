@@ -2,3 +2,8 @@
   font-family: $body-font;
   color: $light-grey;
 }
+
+@mixin background-image-styling {
+  background-repeat: no-repeat;
+  background-position: center;
+}

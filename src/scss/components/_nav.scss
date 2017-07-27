@@ -1,0 +1,44 @@
+nav {
+  background: $main-red;
+  box-shadow: $drop-shadow;
+  ul {
+    margin-left: 20px;
+    .profile-picture {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      @include background-image-styling;
+      background-size: contain;
+      span {
+        margin-left: 42px;
+        line-height: 30px;
+      }
+    }
+    .dropdown-toggle::after {
+      margin-left: 1.9em;
+    }
+    a {
+      color: $secnd-white;
+      font-weight: bold;
+      &:hover {
+        color: $secnd-white;
+      }
+      &:focus {
+        color: $secnd-white;
+      }
+    }
+    .dropdown-item {
+      padding: 10px 1.5rem;
+      &:focus, &:hover {
+      background: $main-red;
+      color: $secnd-white;
+    }
+    }
+    .dropdown-menu {
+      padding: 0;
+      border-radius: 0;
+      border-color: $light-grey;
+    }
+  }
+}

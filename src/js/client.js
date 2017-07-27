@@ -5,10 +5,13 @@
 
 function init() {
   ifHasLoggedIn();
-
   ifIsOnHomepage();
   ifIsOnRegisterPage();
   ifOnForm();
+
+  if ($(document.body).height() < $(window).height()) {
+    $('footer').css({'position': 'fixed', 'bottom': '0px'});
+  }
 
   initMap();
 
@@ -41,14 +44,15 @@ function ifIsOnRegisterPage() {
 }
 
 function ifIsOnHomepage() {
-  if($('.search-bar-home').length === 0){  // return's true if element is present
-  // show or hide another div
-  $('<li><div id="locationField"><form id="searchForm" action="" method="GET"><input id="pac-input" class="controls" type="text" placeholder="Enter a location" value=""/></form></div>').appendTo($('nav ul'));
-}
+  if ($('.search-bar-home').length > 0 && $('.main-forms').length === 0) {
+    $('body').css('background-image', 'url(/images/homepage-background.jpeg)');
+  } else if($('.search-bar-home').length === 0){
+    $('<li><div id="locationField"><form id="searchForm" action="" method="GET"><input id="pac-input" class="controls" type="text" placeholder="Enter a location" value=""/></form></div>').prependTo($('nav .navbar-nav'));
+  }
 }
 
 function ifHasLoggedIn() {
-  const isUserLoggedIn = parseInt($('nav li:nth-child(2)').attr('data-value'));
+  const isUserLoggedIn = parseInt($('#logout').attr('data-value'));
   if (isUserLoggedIn === 0) {
     $('#login-home-form').remove();
     $('.logo-div').remove();
@@ -85,7 +89,7 @@ function cannotDoubleVoteMsg() {
 }
 
 function updateVotes(e) {
-  const isUserLoggedIn = parseInt($('nav li:nth-child(2)').attr('data-value'));
+  const isUserLoggedIn = parseInt($('#logout').attr('data-value'));
 
   const whatButtonDidIClick = $(e.target).attr('id');
   const inputSiblings = $(e.target).siblings('input');
