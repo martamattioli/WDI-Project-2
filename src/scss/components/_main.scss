@@ -4,7 +4,7 @@ body {
 }
 
 .homepage-page {
-  margin: 100px 0 150px;
+  margin: 40px 0 250px;
   .search-bar-home {
     margin-top: 60px;
     padding: 30px;
@@ -18,7 +18,27 @@ body {
       margin-top: 35px;
       input {
         width: 100%;
+        border: 0;
+        border-bottom: solid 5px $main-red;
+        padding: 10px;
+        &:focus {
+          outline: none;
+        }
       }
+    }
+  }
+}
+
+.pac-container {
+  .pac-icon-marker {
+    margin-left: 7px;
+  }
+  .pac-item {
+    font-family: $body-font;
+    font-size: 16px;
+    padding: 5px 0;
+    span:nth-child(3) {
+      font-size: 14px;
     }
   }
 }
