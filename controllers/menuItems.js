@@ -1,6 +1,5 @@
 const Restaurant = require('../models/restaurant');
 const itemCategories = [
-  'Breakfast',
   'Starter',
   'Main Course',
   'Dessert'

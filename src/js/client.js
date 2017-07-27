@@ -12,13 +12,22 @@ function init() {
   if ($(document.body).height() < $(window).height()) {
     $('footer').css({'position': 'fixed', 'bottom': '0px', 'width': '100%'});
   }
-
-  if (parseInt($('.rest-details-price').text()) === 1) {
-    $('.rest-details-price').text('£');
-  } else if (parseInt($('.rest-details-price').text()) === 2) {
-    $('.rest-details-price').text('££');
-  } else if (parseInt($('.rest-details-price').text()) === 3) {
-    $('.rest-details-price').text('£££');
+  
+  switch (parseInt($('.rest-details-price').text())) {
+    case 1:
+      $('.rest-details-price').text('£');
+      break;
+    case 2:
+      $('.rest-details-price').text('££');
+      break;
+    case 3:
+      $('.rest-details-price').text('£££');
+      break;
+    case 4:
+      $('.rest-details-price').text('££££');
+      break;
+    default:
+      $('.rest-details-price').text('No info');
   }
 
   if ($('.menu-item').length === 0) {
@@ -40,14 +49,6 @@ function init() {
     default:
       $('.image-category').attr('src', '/images/main-icon.svg');
   }
-
-  // if ($('.price-item-span').text() === '') {
-  //   $('.price-item-span').prev().remove();
-  // }
-  //
-  // if ($('.otherOptions-item-span').text() === '') {
-  //   $('.otherOptions-item-span').prev().remove();
-  // }
 
   $('.critiques').on('click', () => {
     $('.comment-section').fadeIn();
@@ -101,7 +102,7 @@ function ifHasLoggedIn() {
     $('.logo-div').remove();
     $('.the-whole-website').css('display', 'block');
     $('nav').css('display', 'block');
-    if ($('.edit-user-info').length > 0) {
+    if ($('.edit-user-info').length > 0 || $('.add-item-page').length > 0) {
       $('<div class="row logo-div"><div class="col-12"><a href="/"><img src="/images/logo.svg" alt="Taste the Menu Logo" class="img-responsive"></a></div></div>').prependTo($('main'));
       $('nav').remove();
     }
