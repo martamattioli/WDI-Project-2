@@ -14,11 +14,139 @@
 
   .menu {
     list-style-type: none;
+    padding: 0;
+    width: 90%;
+    margin: 0 auto;
     .menu-item {
+      padding: 10px 0;
+      border-bottom: solid 2px $light-grey;
+
       .menu-item-item {
         font-size: 20px;
         img {
           margin-right: 10px;
+        }
+      }
+
+      .item-voting-system {
+        text-align: right;
+        .yeah {
+          margin: 0 10px 0 5px;
+        }
+
+        .critiques {
+          height: 35px;
+          border: none;
+          padding: 0 10px;
+          cursor: pointer;
+          background: $secnd-orange;
+          &:hover {
+            background: darken($secnd-orange, 10%);
+          }
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      .comment-section {
+        padding: 10px 0 0 0;
+
+        .close-comment-section {
+          font-weight: bold;
+          text-align: right;
+          padding: 5px 20px 0 0;
+          color: $light-grey;
+          cursor: pointer;
+        }
+      }
+
+      .single-comment {
+        padding: 10px;
+      }
+
+      .comment-picture {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        @include background-image-styling;
+        background-size: contain;
+        span {
+          line-height: 30px;
+          margin-left: 40px;
+        }
+      }
+
+      .comment {
+        margin: 0 20px 0 40px;
+        font-style: italic;
+      }
+
+      .votes {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .yeah-vote {
+        background: #2ecc71;
+        &:hover {
+          background: darken(#2ecc71, 10%);
+        }
+      }
+
+      .bleah-vote {
+        background: $main-red;
+        &:hover {
+          background: darken($main-red, 10%);
+        }
+      }
+
+      .leave-comment-form {
+        margin: 10px 0;
+        input {
+          border: none;
+          padding: 5px 20px;
+        }
+        input:nth-child(1) {
+          width: 92%;
+          background: lighten($light-grey, 10%);
+          border-radius: 20px;
+          margin-right: 17px;
+          &:focus {
+            outline: none;
+          }
+        }
+        ::-webkit-input-placeholder {
+          color: $typo-color;
+        }
+        input:nth-child(2) {
+          padding: 2px 10px;
+          background: none;
+          border: solid 2px $typo-color;
+          cursor: pointer;
+          &:hover {
+            background: lighten($light-grey, 10%);
+          }
+        }
+      }
+
+      .delete-comment-form {
+        display: inline-block;
+        .delete-comment {
+          font-size: 12px;
+          border: none;
+          border-radius: 3px;
+          background: $main-red;
+          &:hover {
+            background: darken($main-red, 10%);
+          }
         }
       }
     }

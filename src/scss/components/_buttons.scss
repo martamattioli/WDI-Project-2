@@ -1,4 +1,11 @@
 //BUTTONS
+.button {
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+}
+
 .orange-button {
   width: 100%;
   border: none;

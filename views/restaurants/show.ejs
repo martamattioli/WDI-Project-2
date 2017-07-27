@@ -46,50 +46,58 @@
     <ul id="menu" class="menu">
       <% restaurant.menuItem.forEach(item => { %>
         <li data-score="" class="menu-item">
-          <p class="menu-item-item"><span><img class="image-category" src="/images/starter-icon.svg" width="40px" height="40px" alt="<%= item.itemCategory %>"></span><%= item.itemName %><span>, £</span><span class="price-item-span"><%= item.price %></span><span>, </span><span class="otherOptions-item-span"><%= item.otherOptions %></span></p>
+        <div class="row item-bar">
+          <div class="col-6">
+            <p class="menu-item-item"><span><img class="image-category" src="/images/starter-icon.svg" width="40px" height="40px" alt="<%= item.itemCategory %>"></span><%= item.itemName %><span>, £</span><span class="price-item-span"><%= item.price %></span><span></p>
 
-          <p class="item-category" style="display: none;"><%= item.itemCategory %></p>
-
-          <% if( locals.currentUser && item.hasVoted('upvote', locals.currentUser.id) ){ %>
-            <input class="upvote-hidden-check-up" type="hidden" name="can_upvote" value="false">
-          <% } else {%>
-            <input class="upvote-hidden-check-up" type="hidden" name="can_upvote" value="true">
-          <% } %>
-
-          <button id="upvote" class="btn btn-success votes"><%= item.upvotes %></button>
-
-          <% if( locals.currentUser && item.hasVoted('downvote', locals.currentUser.id) ){ %>
-            <input class="downvote-hidden-check-down" type="hidden" name="can_downvote" value="false">
-          <% } else {%>
-            <input class="downvote-hidden-check-down" type="hidden" name="can_downvote" value="true">
-          <% } %>
-
-          <button id="downvote" class="btn btn-danger votes"><%= item.downvotes %></button>
-
-          <div style="display: none;"><%= item._id %></div>
-          <div style="display: none;"><%= item.upvotes %></div>
-          <div style="display: none;"><%= item.downvotes %></div>
-
-          <h4>Comments</h4>
-          <form action="/restaurants/<%= restaurant._id %>/menuItems/<%= item._id %>/comments/new" method="POST">
-            <input type="text" name="body">
-            <input type="submit" value="Post Comment">
-          </form>
-
-          <div>
-            <% item.comments.forEach(comment => { %>
-              <div>
-                <h5><%= comment.user.firstName %></a></h5>
-                <p><%= comment.body %></p>
-                <% if (locals.currentUser && comment.user.id === locals.currentUser.id) { %>
-                  <form action="/restaurants/<%= restaurant._id %>/menuItems/<%= item._id %>/comments/<%= comment._id %>" method="POST">
-                    <input type="hidden" name="_method" value="delete">
-                    <input class="btn btn-danger" type="submit" value="Delete">
-                  </form>
-                <% } %>
-              </div>
-            <% }) %>
+            <p class="item-category" style="display: none;"><%= item.itemCategory %></p>
           </div>
+          <div class="col-6 item-voting-system">
+            <% if( locals.currentUser && item.hasVoted('upvote', locals.currentUser.id) ){ %>
+              <input class="upvote-hidden-check-up" type="hidden" name="can_upvote" value="false">
+            <% } else {%>
+              <input class="upvote-hidden-check-up" type="hidden" name="can_upvote" value="true">
+            <% } %>
+
+            <button id="upvote" class="sort-this-out votes yeah-vote"><%= item.upvotes %></button><span class="yeah">YEAH!</span>
+
+            <% if( locals.currentUser && item.hasVoted('downvote', locals.currentUser.id) ){ %>
+              <input class="downvote-hidden-check-down" type="hidden" name="can_downvote" value="false">
+            <% } else {%>
+              <input class="downvote-hidden-check-down" type="hidden" name="can_downvote" value="true">
+            <% } %>
+
+            <button id="downvote" class="sort-this-out bleah-vote votes"><%= item.downvotes %></button><span class="yeah">BLEAH!</span>
+
+            <div style="display: none;"><%= item._id %></div>
+            <div style="display: none;"><%= item.upvotes %></div>
+            <div style="display: none;"><%= item.downvotes %></div>
+
+            <button class="critiques"><i class="fa fa-comment-o" aria-hidden="true"></i> CRITIQUES</button>
+          </div>
+          <div class="col-12 comment-section" style="display: none;">
+            <p class="close-comment-section">x</p>
+            <form class="leave-comment-form" action="/restaurants/<%= restaurant._id %>/menuItems/<%= item._id %>/comments/new" method="POST">
+              <input type="text" name="body" placeholder="Leave a critique">
+              <input type="submit" value="go">
+            </form>
+
+            <div class="comment-div">
+              <% item.comments.forEach(comment => { %>
+                <div class="single-comment">
+                  <div class="comment-picture" style="background-image: url(<%= comment.user.photo %>);"><span><%= comment.user.firstName %></span></div>
+                  <span class="comment"><%= comment.body %></span>
+                  <% if (locals.currentUser && comment.user.id === locals.currentUser.id) { %>
+                    <form class="delete-comment-form" action="/restaurants/<%= restaurant._id %>/menuItems/<%= item._id %>/comments/<%= comment._id %>" method="POST">
+                      <input type="hidden" name="_method" value="delete">
+                      <button class="delete-comment">DELETE</button>
+                    </form>
+                  <% } %>
+                </div>
+              <% }) %>
+            </div>
+          </div>
+        </div>
         </li>
       <% }) %>
     </ul>

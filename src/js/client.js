@@ -41,13 +41,20 @@ function init() {
       $('.image-category').attr('src', '/images/main-icon.svg');
   }
 
-  if ($('.price-item-span').text() === '') {
-    $('.price-item-span').prev().remove();
-  }
+  // if ($('.price-item-span').text() === '') {
+  //   $('.price-item-span').prev().remove();
+  // }
+  //
+  // if ($('.otherOptions-item-span').text() === '') {
+  //   $('.otherOptions-item-span').prev().remove();
+  // }
 
-  if ($('.otherOptions-item-span').text() === '') {
-    $('.otherOptions-item-span').prev().remove();
-  }
+  $('.critiques').on('click', () => {
+    $('.comment-section').fadeIn();
+  });
+  $('.close-comment-section').on('click', () => {
+    $('.comment-section').fadeOut();
+  });
 
   initMap();
 
@@ -102,16 +109,17 @@ function ifHasLoggedIn() {
 }
 
 function calculateScoreAndSort() {
-  const menuList = $('#menu li');
-
+  const menuList = $('.item-voting-system');
   menuList.each((list) => {
-    const voteButton = $(menuList[list]).children('button');
+    const voteButton = $(menuList[list]).children('.sort-this-out');
+    console.log($(menuList[list]).children('.sort-this-out'));
     const upVoteButtonValue = parseInt(($($(voteButton)[0]).text()));
     const downVoteButtonValue = parseInt(($($(voteButton)[1]).text()));
-    $(menuList[list]).attr('data-score', `${upVoteButtonValue - downVoteButtonValue}`);
+    console.log(upVoteButtonValue, downVoteButtonValue);
+    $($('#menu li')[list]).attr('data-score', `${upVoteButtonValue - downVoteButtonValue}`);
   });
 
-  menuList.sort(function (a, b) {
+  $('#menu li').sort(function (a, b) {
     return +b.getAttribute('data-score') - +a.getAttribute('data-score');
   }).appendTo($('#menu'));
 }
