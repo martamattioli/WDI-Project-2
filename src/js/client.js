@@ -8,7 +8,7 @@ function init() {
 
   ifIsOnHomepage();
   ifIsOnRegisterPage();
-  // ifOnRestaurantDetails();
+  ifOnForm();
 
   initMap();
 
@@ -25,6 +25,12 @@ function init() {
   $('.votes').on('click', updateVotes);
 
   calculateScoreAndSort();
+}
+
+function ifOnForm() {
+  if($('.main-forms').length > 0) {
+    $('body').css('background-color', '#d65b49');
+  }
 }
 
 function ifIsOnRegisterPage() {
@@ -44,7 +50,8 @@ function ifIsOnHomepage() {
 function ifHasLoggedIn() {
   const isUserLoggedIn = parseInt($('nav li:nth-child(2)').attr('data-value'));
   if (isUserLoggedIn === 0) {
-    $('#login-home-form').css('display', 'none');
+    $('#login-home-form').remove();
+    $('.logo-div').remove();
     $('.the-whole-website').css('display', 'block');
     $('nav').css('display', 'block');
   }

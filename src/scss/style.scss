@@ -1,7 +1,13 @@
+//HELPERS
+@import "helpers/variables";
+
+//COMPONENTS
+@import "components/forms";
+
 h1 {
   text-align: center;
   padding: 40px 0;
-  font-family: "Century Gothic", sans-serif;
+  font-family: $body-font;
 }
 
 ul {

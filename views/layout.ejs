@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Project 2</title>
+    <title>Taste the Menu</title>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDT0WLiFcMOg4LQBxdNbupG_XkKRSf_Q_8"></script>
     <script
     src="https://code.jquery.com/jquery-2.2.4.js"
@@ -27,22 +27,7 @@
     <% } %>
 
     <main class="container">
-      <div id="login-home-form" class="row">
-        <h1 class="col-12">Login</h1>
-        <form method="POST" action="/login" class="col-12">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control">
-          </div>
-
-          <button class="btn btn-primary">Login</button>
-        </form>
-        <p>Don't have an account? <a href="/register">register</a></p>
-      </div>
+      <% include ./partials/login-form %>
 
       <div class="the-whole-website" style="display: none;">
         <%- body %>
