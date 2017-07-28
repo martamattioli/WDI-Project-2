@@ -8,10 +8,8 @@ function commentsCreate(req, res) {
     if(!restaurant) return res.status(404).render('statics/404');
 
     const menuItem = restaurant.menuItem.id(req.params.menuItemId);
-    console.log(menuItem);
     req.body.user = req.session.userId;
     menuItem.comments.push(req.body);
-    console.log(menuItem);
     restaurant.save();
   })
   .then(() => {

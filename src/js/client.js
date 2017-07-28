@@ -9,14 +9,14 @@ function init() {
   const profilePicture = $('.profile-picture')[0];
   const marginOfSpan = $($('.profile-picture')[0]).width();
   const totalMargin = marginOfSpan + 20;
+  const restaurantType = $('#restaurant-type')[0];
+  const restaurantTypeText = $(restaurantType).text();
 
   ifHasLoggedIn();
   ifIsOnHomepage();
   ifIsOnRegisterPage();
   ifOnForm();
 
-  const restaurantType = $('#restaurant-type')[0];
-  const restaurantTypeText = $(restaurantType).text();
   if (!restaurantTypeText.includes('restaurant')) {
     const menuContainer = $('.menu-container')[0];
     const addItemButton = $('.cancel-button')[0];

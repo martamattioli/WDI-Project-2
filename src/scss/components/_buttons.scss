@@ -16,6 +16,9 @@
   &:hover {
     background: darken($secnd-orange, 10%);
   }
+  &:focus {
+    outline: none;
+  }
 }
 
 
@@ -37,6 +40,9 @@
   &:hover {
     color: $secnd-white;
     background: darken($main-red, 10%);
+  }
+  &:focus {
+    outline: none;
   }
 }
 
