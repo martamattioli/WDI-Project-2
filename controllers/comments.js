@@ -7,7 +7,7 @@ function commentsCreate(req, res) {
   .then((restaurant) => {
     if(!restaurant) return res.status(404).render('statics/404');
 
-    const menuItem = restaurant.menuItem.find(menuItemId => menuItemId.id);
+    const menuItem = restaurant.menuItem.id(req.params.menuItemId);
     console.log(menuItem);
     req.body.user = req.session.userId;
     menuItem.comments.push(req.body);
