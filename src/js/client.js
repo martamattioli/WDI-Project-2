@@ -15,6 +15,23 @@ function init() {
   ifIsOnRegisterPage();
   ifOnForm();
 
+  const restaurantType = $('#restaurant-type')[0];
+  const restaurantTypeText = $(restaurantType).text();
+  if (!restaurantTypeText.includes('restaurant')) {
+    const menuContainer = $('.menu-container')[0];
+    const addItemButton = $('.cancel-button')[0];
+    const addItemSection = $('.add-item-section')[0];
+    $(menuContainer).remove();
+    $(addItemButton).remove();
+    $('<h2 class="not-a-restaurant">This is not a restaurant I\'m afraid...</h2>').appendTo($(addItemSection));
+  }
+
+  if ($('.menu-item').length === 0) {
+    $('<h2 class="no-items">No-one has added any menu items yet!</h2>').appendTo($('.menu-container'));
+  } else {
+    $('.no-items').remove();
+  }
+
   if ($('.comment-picture').length > 0) {
     const commentPicture = $('.comment-picture');
     commentPicture.each(comment => {
@@ -45,12 +62,6 @@ function init() {
       break;
     default:
       $('.rest-details-price').text('No info');
-  }
-
-  if ($('.menu-item').length === 0) {
-    $('<h2 class="no-items">No-one has added any menu items yet!</h2>').appendTo($('.menu-container'));
-  } else {
-    $('.no-items').remove();
   }
 
   imageCategoryArray.each(function(category) {

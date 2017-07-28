@@ -78,6 +78,12 @@ body, .restaurant-info-container {
     padding: 0;
   }
 
+  .not-a-restaurant {
+    text-align: center;
+  margin-top: 50px;
+  font-weight: bold;
+  }
+
   .black-overlay {
     background: $form-opaque-black;
     text-align: center;

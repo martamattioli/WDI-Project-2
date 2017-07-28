@@ -1,3 +1,4 @@
+<p id="restaurant-type" style="display: none;"><%= restaurant.types %></p>
 <section class="restaurants-show row">
   <div class="col-12 restaurant-info-container" style="background-image: url('<%= restaurant.photo %>')">
     <div class="black-overlay">
@@ -85,7 +86,7 @@
             <div class="comment-div">
               <% item.comments.forEach(comment => { %>
                 <div class="single-comment">
-                  <div class="comment-picture profile-default" style="background-image: url(<%= comment.user.photo %>);"><span><strong><%= comment.user.firstName %></strong></span></div>
+                  <div class="comment-picture profile-default" style="background-image: url(<%= comment.user.photo %>);"><a href="/users/<%= comment.user.id %>"><span><strong><%= comment.user.firstName %></strong></span></a></div>
                   <span class="comment"><%= comment.body %></span>
                   <% if (locals.currentUser && comment.user.id === locals.currentUser.id) { %>
                     <form class="delete-comment-form" action="/restaurants/<%= restaurant._id %>/menuItems/<%= item._id %>/comments/<%= comment._id %>" method="POST">
@@ -103,7 +104,7 @@
     </ul>
   </div>
 
-  <div class="col-12">
+  <div class="col-12 add-item-section">
     <a class="cancel-button add-item" href="/restaurants/<%= restaurant.restaurantId %>/menuItems/new">ADD NEW ITEM</a>
   </div>
 </section>
