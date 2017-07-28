@@ -1,8 +1,9 @@
 <div style="display: none;">
   <% if (locals.isLoggedIn) { %>
-    <li class="nav-item" id="logout" data-value="0"></li>
+    <li id="logout" data-value="0"></li>
   <%} else { %>
     <li id="login" data-value="1"></li>
+    <li id="register" data-value="1"></li>
   <% } %>
 </div>
 <nav class="navbar" style="display: none;">
@@ -13,10 +14,10 @@
     <% if (locals.isLoggedIn) { %>
       <li class="nav-item dropdown">
         <a href="/users/<%= currentUser._id %>" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <div class="profile-picture" style="background-image: url(<%= currentUser.photo %>);"><span><%= currentUser.firstName %></span></div>
+          <div class="profile-picture profile-default" style="background-image: url(<%= currentUser.photo %>);"><span><%= currentUser.firstName %></span></div>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/users/<%= currentUser._id %>"><%= currentUser.firstName %></a>
+          <a class="dropdown-item" href="/users/<%= currentUser._id %>">Your profile</a>
           <a class="dropdown-item" href="/logout">Log Out</a>
         </div>
       </li>

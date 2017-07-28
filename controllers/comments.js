@@ -8,9 +8,10 @@ function commentsCreate(req, res) {
     if(!restaurant) return res.status(404).render('statics/404');
 
     const menuItem = restaurant.menuItem.find(obj => obj.id);
+    console.log(menuItem);
     req.body.user = req.session.userId;
     menuItem.comments.push(req.body);
-    console.log(menuItem.comments);
+    console.log(menuItem);
     restaurant.save();
   })
   .then(() => {
@@ -33,7 +34,7 @@ function commentsDelete(req, res) {
   .exec()
   .then((restaurant) => {
     if(!restaurant) return res.status(404).render('statics/404');
-    
+
     const menuItem = restaurant.menuItem.find(obj => obj.id);
     const comment = menuItem.comments.find(obj => obj.id);
     comment.remove();

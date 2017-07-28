@@ -21,7 +21,7 @@ userSchema.pre('save', function hashPassword(next) {
 userSchema
   .virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(passwordConfirmation) {
-    this._passwordConfirmation =passwordConfirmation;
+    this._passwordConfirmation = passwordConfirmation;
   });
 
 userSchema.pre('validate', function checkPassword(next) {

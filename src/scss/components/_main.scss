@@ -6,6 +6,8 @@ body, .restaurant-info-container {
 .homepage-page {
   margin: 40px 0 250px;
   .search-bar-home {
+    max-width: 600px;
+    margin: auto;
     margin-top: 60px;
     padding: 30px;
     background-color: $form-opaque-black;

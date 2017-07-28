@@ -48,7 +48,7 @@ app.use((req, res, next) => {
     .then(user=> {
       if (!user) {
         return req.session.regenerate(() => {
-          // req.flash('danger', 'You must be logged in to view this content');
+          req.flash('danger', 'You must be logged in to view this content');
           res.redirect('/');
         });
       }
