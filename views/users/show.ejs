@@ -4,7 +4,7 @@
     <h1><%= user.firstName %></h1>
     <p><span>First Name:</span> <%= user.firstName %></p>
     <p><span>Last Name:</span> <%= user.lastName %></p>
-    <p><span>First Email:</span> <%= user.email %></p>
+    <p><span>Email:</span> <%= user.email %></p>
 
     <% if (user.id === locals.currentUser.id) { %>
       <a class="orange-button" href="/users/<%= user._id %>/edit">EDIT INFO</a>

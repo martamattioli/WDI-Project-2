@@ -1,0 +1,52 @@
+<section class="main-forms row add-item-page">
+  <div class="col-12">
+    <form method="POST" action="/restaurants/<%= restaurant.restaurantId %>/menuItems/<%= menuItem._id %>">
+      <input type="hidden" name="_method" value="PUT">
+      <div class="form-group">
+        <label for="itemName">Item Name</label>
+        <input type="text" name="itemName" id="itemName" class="form-control" value="<%= menuItem.itemName %>">
+      </div>
+      <div class="form-group">
+        <label for="itemCategory">Item Category</label>
+        <select name="itemCategory" id="itemCategory" class="form-control select2">
+          <option><%= menuItem.itemCategory %></option>
+          <% itemCategories.forEach((itemCategory) => { %>
+            <option><%= itemCategory %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price" class="form-control" value="<%= menuItem.price %>">
+      </div>
+      <div class="form-group no-show">
+        <label for="price">Upvotes</label>
+        <input type="number" name="uovotes" id="upvotes" class="form-control" value="<%= menuItem.upvotes %>">
+      </div>
+      <div class="form-group no-show">
+        <label for="downvotes">Downvotes</label>
+        <input type="number" name="downvotes" id="downvotes" class="form-control" value="<%= menuItem.downvotes %>">
+      </div>
+      <div class="form-group">
+        <label for="photos">Photo</label>
+        <input type="string" name="photos" id="photos" class="form-control" value="<%= menuItem.photos %>">
+      </div>
+      <div class="form-group">
+        <label for="otherOptions">Other Options</label>
+        <input type="string" name="otherOptions" id="otherOptions" class="form-control" value="<%= menuItem.otherOptions %>">
+      </div>
+      <div class="form-group no-show">
+        <label for="upvoteHistory">upvoteHistory</label>
+        <input type="string" name="upvoteHistory" id="upvoteHistory" class="form-control" value="<%= menuItem.upvoteHistory %>">
+      </div>
+      <div class="form-group no-show">
+        <label for="downvoteHistory">downvoteHistory</label>
+        <input type="string" name="downvoteHistory" id="downvoteHistory" class="form-control" value="<%= menuItem.downvoteHistory %>">
+      </div>
+      <button class="orange-button">EDIT ITEM</button>
+    </form>
+  </div>
+  <div class="col-12">
+    <a href="/restaurants/<%= restaurant.restaurantId %>" class="cancel-button">CANCEL</a>
+  </div>
+</section>

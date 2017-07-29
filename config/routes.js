@@ -44,10 +44,20 @@ router.route('/users/:id/edit')
 router.route('/restaurants/new')
 .post(restaurants.create);
 
+router.route('/restaurants/:restaurantId/menuItems/new')
+.get(secureRoute, menuItems.new);
+
 router.route('/restaurants/:restaurantId')
 .get(restaurants.show)
 .post(secureRoute, menuItems.create)
 .put(secureRoute, menuItems.update);
+
+router.route('/restaurants/:restaurantId/menuItems/:menuItemId/edit')
+.get(secureRoute, menuItems.edit);
+
+router.route('/restaurants/:restaurantId/menuItems/:menuItemId')
+.put(secureRoute, menuItems.adminUpdate)
+.delete(secureRoute, menuItems.adminDelete);
 
 router.route('/restaurants/:restaurantId/menuItems/:menuItemId/comments/new')
 .post(comments.create);
@@ -55,7 +65,6 @@ router.route('/restaurants/:restaurantId/menuItems/:menuItemId/comments/new')
 router.route('/restaurants/:restaurantId/menuItems/:menuItemId/comments/:commentId')
 .delete(comments.delete);
 
-router.route('/restaurants/:restaurantId/menuItems/new')
-.get(secureRoute, menuItems.new);
+
 
 module.exports = router;

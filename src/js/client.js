@@ -141,7 +141,7 @@ function ifHasLoggedIn() {
     $('.logo-div').remove();
     $('.the-whole-website').css('display', 'block');
     $('nav').css('display', 'block');
-    if ($('.edit-user-info').length > 0 || $('.add-item-page').length > 0) {
+    if ($('.edit-user-info').length > 0 || $('.add-item-page').length > 0 || $('.not-found-page').length > 0 ) {
       $('<div class="row logo-div"><div class="col-12"><a href="/"><img src="/images/logo.svg" alt="Taste the Menu Logo" class="img-responsive"></a></div></div>').prependTo($('main'));
       $('nav').remove();
     }

@@ -30,8 +30,6 @@ function menuItemsCreate(req, res) {
       req.body.downvoteHistory.push(req.session.userId);
     restaurant.menuItem.push(req.body);
     restaurant.save(); //because I'm not running update, so I have to run save, in order to save changes in the database
-    // console.log(`After I add new menu item ${restaurant}`);
-    console.log(restaurant);
     res.redirect(`/restaurants/${restaurant.restaurantId}`);
   });
 }
@@ -84,8 +82,62 @@ function checkIfinArrayandSplice(toCheck, array) {
   }
 }
 
+function menuItemsEdit(req, res, next) {
+  Restaurant
+    .findById(req.params.restaurantId)
+    .then((restaurant) => {
+      if(!restaurant) return res.status(404).render('statics/404');
+      const menuItem = restaurant.menuItem.id(req.params.menuItemId);
+
+      res.render('menuItems/edit', { restaurant, menuItem, itemCategories });
+    })
+    .catch(next);
+}
+
+function menuAdminUpdate(req, res) {
+  Restaurant
+    .findOne({ restaurantId: req.params.restaurantId })
+    .then((restaurant) => {
+      if(!restaurant) return res.status(404).render('statics/404');
+
+      const menuItem = restaurant.menuItem.id(req.params.menuItemId);
+
+      for(const field in req.body) {
+        menuItem[field] = req.body[field];
+      }
+
+      return restaurant.save();
+    })
+    .then((restaurant) => res.redirect(`/restaurants/${restaurant.restaurantId}`))
+    .catch(err => {
+      res.status(500).send(err);
+    });
+}
+
+function menuAdminDelete(req, res) {
+  Restaurant
+    .findById(req.params.restaurantId)
+    .then((restaurant) => {
+      if(!restaurant) return res.status(404).render('statics/404');
+
+      const menuItem = restaurant.menuItem.id(req.params.menuItemId);
+
+      menuItem.remove();
+
+      restaurant.save();
+      res.redirect(`/restaurants/${restaurant.restaurantId}`);
+
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    });
+}
+
 module.exports = {
   new: menuItemsNew,
   create: menuItemsCreate,
-  update: menuItemsUpdate
+  update: menuItemsUpdate,
+  edit: menuItemsEdit,
+  adminUpdate: menuAdminUpdate,
+  adminDelete: menuAdminDelete
 };

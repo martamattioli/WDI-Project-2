@@ -152,4 +152,13 @@
     }
   }
 
+  .admin-rights {
+    text-align: right;
+    background: $light-grey;
+    padding: 5px 5px 10px 5px;
+    margin-top: 5px;
+    .delete-comment {
+      background: $secnd-orange;
+    }
+  }
 }
