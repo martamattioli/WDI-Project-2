@@ -87,7 +87,7 @@ body, .restaurant-info-container {
   .black-overlay {
     background: $form-opaque-black;
     text-align: center;
-    padding: 40px 0;
+    padding: 40px 20px;
     h1 {
       font-weight: bold;
       font-size: 50px;
@@ -96,10 +96,20 @@ body, .restaurant-info-container {
     h1, h3, p {
       color: $secnd-white;
     }
+    h3 {
+      line-height: 40px;
+    }
     .icons {
-      margin-top: 40px;
+      margin-top: 20px;
+      .single-icon {
+        margin-top: 20px;
+      }
       .rest-details {
         margin-top: 20px;
+      }
+      img {
+        width: 70px;
+        height: auto;
       }
       a {
         color: $secnd-white;

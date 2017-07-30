@@ -4,17 +4,20 @@
 
 
 function init() {
-  const itemCategoryArray = $('.item-category');
+  const itemCategoryArray = $('.item-category'); // item category section
   const imageCategoryArray = $('.image-category');
+
   const profilePicture = $('.profile-picture')[0];
-  const marginOfSpan = $($('.profile-picture')[0]).width();
+
+  const marginOfSpan = $($('.profile-picture')[0]).width(); // menuItems comments section
   const totalMargin = marginOfSpan + 20;
   const restaurantType = $('#restaurant-type')[0];
   const restaurantTypeText = $(restaurantType).text();
 
+  // show divs based on where you user is on website
   ifHasLoggedIn();
-  ifIsOnHomepage();
   ifIsOnRegisterPage();
+  ifIsOnHomepage();
   ifOnForm();
 
   if (!restaurantTypeText.includes('restaurant')) {

@@ -4,8 +4,13 @@
     font-weight: bold;
     .menu-legend {
       margin: 30px;
-      padding: 20px;
+      padding: 0 20px 20px;
       border: solid 2px $light-grey;
+      img {
+        width: 70px;
+        height: auto;
+        margin-top: 20px;
+      }
       .legend-courses {
         margin-top: 15px;
       }
@@ -90,6 +95,7 @@
         border-radius: 50%;
         border: none;
         cursor: pointer;
+        border-bottom: solid 2px black;
         &:focus {
           outline: none;
         }
@@ -97,6 +103,7 @@
 
       .yeah-vote {
         background: #2ecc71;
+        border-bottom-color: darken(#2ecc71, 20%);
         &:hover {
           background: darken(#2ecc71, 10%);
         }
@@ -104,6 +111,7 @@
 
       .bleah-vote {
         background: $main-red;
+        border-bottom-color: darken($main-red, 20%);
         &:hover {
           background: darken($main-red, 10%);
         }
@@ -116,7 +124,7 @@
           padding: 5px 20px;
         }
         input:nth-child(1) {
-          width: 92%;
+          width: 100%;
           background: lighten($light-grey, 10%);
           border-radius: 20px;
           margin-right: 17px;
@@ -128,6 +136,8 @@
           color: $typo-color;
         }
         input:nth-child(2) {
+          display: block;
+          margin: 10px auto 0;
           padding: 2px 10px;
           background: none;
           border: solid 2px $typo-color;

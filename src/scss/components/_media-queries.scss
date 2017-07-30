@@ -1,0 +1,55 @@
+@media (max-width: 992px) {
+  .menu-container {
+    .menu-item-item {
+      text-align: center;
+    }
+
+    .item-voting-system {
+      text-align: center!important;
+      margin: 20px 0;
+      .critiques {
+        margin-top: 15px;
+      }
+    }
+
+    .admin-rights {
+      text-align: center!important;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  nav {
+    .navbar-brand {
+      display: block;
+      text-align: center;
+    }
+    .navbar-nav {
+      display: block!important;
+      margin: 10px 0;
+      text-align: center;
+      .dropdown-menu {
+        width: 100%;
+        .dropdown-item {
+          text-align: center;
+        }
+      }
+    }
+    .form-inline {
+      display: block!important;
+    }
+    form {
+      margin: 0;
+      .form-control {
+        width: 80%;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .search-bar-home {
+    h1 {
+      font-size: 25px;
+    }
+  }
+}

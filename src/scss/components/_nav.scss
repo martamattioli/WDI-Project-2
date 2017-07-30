@@ -1,6 +1,11 @@
 nav {
   background: $main-red;
   box-shadow: $drop-shadow;
+
+  ::-webkit-input-placeholder {
+    font-size: 14px;
+  }
+
   ul {
     margin-left: 20px;
     .profile-picture {

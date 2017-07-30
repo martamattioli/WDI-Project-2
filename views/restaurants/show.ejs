@@ -7,16 +7,16 @@
       <h1><%= restaurant.name %></h1>
       <h3><%= restaurant.address %></h3>
       <div class="row icons">
-        <div class="col-4">
-          <img src="/images/phone-icon.svg" alt="">
+        <div class="col-sm-4 col-xs-12 single-icon">
+          <img src="/images/phone-icon.svg" alt="Phone Icon">
           <p class="rest-details"><%= restaurant.phoneNumber %></p>
         </div>
-        <div class="col-4">
-          <img src="/images/price-icon.svg" alt="">
+        <div class="col-sm-4 col-xs-12 single-icon">
+          <img src="/images/price-icon.svg" alt="Price Icon">
           <p class="rest-details rest-details-price"><%= restaurant.priceLevel %></p>
         </div>
-        <div class="col-4">
-          <img src="/images/web-icon.svg" alt="">
+        <div class="col-sm-4 col-xs-12 single-icon">
+          <img src="/images/web-icon.svg" alt="Website Icon">
           <a class="rest-details" href="<%= restaurant.websiteURL %>" target="_blank">Go to <%= restaurant.name %><br> <strong>website</strong></a>
         </div>
       </div>
@@ -28,15 +28,15 @@
       <div class="col-12">
         <h2>MENU</h2>
         <div class="row menu-legend">
-          <div class="col-4">
+          <div class="col-sm-4 col-xs-12">
             <img src="/images/starter-icon.svg" alt="">
             <p class="legend-courses">Appetiser</p>
           </div>
-          <div class="col-4">
+          <div class="col-sm-4 col-xs-12">
             <img src="/images/main-icon.svg" alt="">
             <p class="legend-courses">Main Course</p>
           </div>
-          <div class="col-4">
+          <div class="col-sm-4 col-xs-12">
             <img src="/images/dessert-icon.svg" alt="">
             <p class="legend-courses">Dessert</p>
           </div>
@@ -48,12 +48,12 @@
       <% restaurant.menuItem.forEach(item => { %>
         <li data-score="" class="menu-item">
         <div class="row item-bar">
-          <div class="col-6">
+          <div class="col-lg-6 col-md-12">
             <p class="menu-item-item"><span><img class="image-category" src="/images/starter-icon.svg" width="40px" height="40px" alt="<%= item.itemCategory %>"></span><%= item.itemName %><span>, £</span><span class="price-item-span"><%= item.price %></span><span></p>
 
             <p class="item-category" style="display: none;"><%= item.itemCategory %></p>
           </div>
-          <div class="col-6 item-voting-system">
+          <div class="col-lg-6 col-md-12 item-voting-system">
             <% if( locals.currentUser && item.hasVoted('upvote', locals.currentUser.id) ){ %>
               <input class="upvote-hidden-check-up" type="hidden" name="can_upvote" value="false">
             <% } else {%>
