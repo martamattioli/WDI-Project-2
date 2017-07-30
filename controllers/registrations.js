@@ -15,6 +15,8 @@ function registrationsCreate(req, res) {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return res.status(400).render('registrations/new', { message: 'Passwords do not match' });
+      } else if (err.name === 'MongoError') {
+        return res.status(400).render('registrations/new', { message: 'Email already exists' });
       }
       res.status(500).end();
     });

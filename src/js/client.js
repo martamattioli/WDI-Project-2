@@ -217,18 +217,20 @@ function updateVotes(e) {
     } else {
       if (whatButtonDidIClick === 'upvote' && $(inputSiblingUp).attr('value') === 'true' && whatButtonDidIClick === 'downvote' && $(inputSiblingDown).attr('value') === 'true') {
         addVoteAndSaveDb();
-        calculateScoreAndSort();
+        location.reload();
+        // calculateScoreAndSort();
       } else {
         addVoteAndSaveDb();
-        $(otherButton).text(otherButtonValue - 1);
-        if (whatButtonDidIClick === 'upvote') {
-          $(inputSiblingDown).attr('value', 'true');
-          $(inputSiblingUp).attr('value', 'false');
-        } else {
-          $(inputSiblingDown).attr('value', 'false');
-          $(inputSiblingUp).attr('value', 'true');
-        }
-        calculateScoreAndSort();
+        location.reload();
+        // $(otherButton).text(otherButtonValue - 1);
+        // if (whatButtonDidIClick === 'upvote') {
+        //   $(inputSiblingDown).attr('value', 'true');
+        //   $(inputSiblingUp).attr('value', 'false');
+        // } else {
+        //   $(inputSiblingDown).attr('value', 'false');
+        //   $(inputSiblingUp).attr('value', 'true');
+        // }
+        // calculateScoreAndSort();
       }
     }
   }
@@ -254,12 +256,6 @@ function initMap() {
       window.alert('Select a restaurant');
       return;
     }
-
-    // $(place.photos).each(photo => {
-    //   console.log(place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
-    // });
-
-    // console.log(place.photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500}));
 
     var newVenue = { name: place.name, restaurantId: place.place_id, websiteURL: place.website, types: place.types, priceLevel: place.price_level, rating: place.rating, address: place.formatted_address, phoneNumber: place.international_phone_number, photo: place.photos[0].getUrl({'maxWidth': 1920, 'maxHeight': 500})};
     $.ajax({

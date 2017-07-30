@@ -2,6 +2,7 @@ const Restaurant = require('../models/restaurant');
 const itemCategories = [
   'Starter',
   'Main Course',
+  'Side Dish',
   'Dessert'
 ];
 
