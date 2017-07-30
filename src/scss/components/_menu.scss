@@ -45,12 +45,18 @@
           border: none;
           padding: 0 10px;
           cursor: pointer;
-          background: $secnd-orange;
+          background: $secnd-white;
           &:hover {
-            background: darken($secnd-orange, 10%);
+            // background: darken($secnd-orange, 10%);
+            font-weight: bold;
           }
           &:focus {
             outline: none;
+          }
+
+          i {
+            font-size: 20px;
+            color: $secnd-orange;
           }
         }
       }

@@ -4,4 +4,15 @@ footer {
   text-align: center;
   color: $secnd-white;
   background-color: $main-red;
+  a {
+    color: $secnd-white;
+  }
+  .social-media {
+    a {
+      display: inline-block;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 0 5px;
+    }
+  }
 }
