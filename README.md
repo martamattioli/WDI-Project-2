@@ -30,7 +30,7 @@ In the MVP, the user would be able to
 - Add, vote and critique on items on the menu that they tried or check out what other people say about them
 - View and edit their profiles.
 
-![image](./readme-images/Trello-Screenshot.png)
+![image](./readme-images/Trello-screenshot.png)
 
 =======
 
